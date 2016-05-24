@@ -1,0 +1,54 @@
+<div class="row">
+<!-- left sidebar -->		
+    <div class="sidebar sidebar-left-wrapper">
+      <!-- Todo, gör detta till directive-->
+      <div class="sidebar-left-content">
+        <ul class="sample-type-select">
+          <li>
+            <button class="btn btn-instrument green">LOOPS</button>
+          </li>
+          <li>
+            <button class="btn btn-instrument green">KICK</button>
+          </li>
+          <li>
+            <button class="btn btn-instrument greentwo">SNARE</button>
+          </li>
+          <li>
+            <button class="btn btn-instrument light-blue">CLAP</button>
+          </li>
+          <li>
+            <button class="btn btn-instrument dark-blue">CYMBAL</button>
+          </li>
+          <li>
+            <button class="btn btn-instrument purpleone">TOM</button>
+          </li>
+          <li>
+            <button class="btn btn-instrument purpletwo">NOISE</button>
+          </li>
+          <li>
+            <button class="btn btn-instrument purplethree">HI HAT</button>
+          </li>
+
+
+        </ul>
+      </div>
+		</div>
+
+<!--right sidebar-->
+    <div class="sidebar-right-wrapper">
+      <div class="sidebar-right-content">
+        <!-- Directive för filtrering här-->
+      </div>
+    </div> 
+
+<!--Main Content-->
+		<div class="main-content-wrapper">
+			<div class="container-fluid">
+           	<div class="row" ng-repeat="sample in vm.samples">
+           		<div class="col-md-12" ng-class-odd="'odd-background'">
+                <sample content="sample"></sample>
+              </div>
+           	</div>
+      </div>
+    </div>
+</div>

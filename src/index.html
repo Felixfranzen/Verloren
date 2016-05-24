@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="ngBoilerplate" ng-controller="AppCtrl">
+  <head>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
+    <title ng-bind="pageTitle"></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- font awesome from BootstrapCDN -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+
+    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+    <script type="text/javascript" src="<%= file %>"></script><% }); %>
+  </head>
+ <body>
+
+<!-- top navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+          <a class="navbar-brand" ui-sref="sounds">VERLOREN</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+    </nav>
+
+<div class="container-fluid" style="margin-top: 70px;">
+  <div ui-view="main"></div>   
+</div>     
+</body>
+</html>

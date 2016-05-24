@@ -1,0 +1,69 @@
+<div class="row sample-container">
+	<!-- sample title -->
+	<div class="col-md-8 sample-title">
+		<div class="play-button">
+			
+			<i class="fa fa-play-circle-o" ng-click="vm.play()"></i>
+
+		</div>
+		<div class="sample-title-text">
+			<h1>{{vm.content.title}}</h1>
+			<p>
+				{{vm.content.pack}}
+				<i class="fa fa-arrow-circle-o-right"></i>
+			</p>
+		</div>
+	</div>
+
+	<!-- Download links -->
+	<div class="col-md-4 sample-download">
+		<button class="btn btn-download">
+			<i class="fa fa-cloud-download"></i>
+			Download
+		</button>
+		<button class="btn btn-download btn-audiobin">
+			Add to Audiobin
+		</button>
+	</div>
+	
+	<!-- waveform -->
+	<div class="col-md-12 waveform-wrapper">
+		<!--$element selects this div and populates it with the wavesurfer waveform-->
+		<!--<ng-wavesurfer url="vm.url"></ng-wavesurfer>-->
+		<!--<div id="waveform"></div>-->
+	</div>
+
+	<!-- link to profile -->
+	<div class="col-md-8 col-sm-8 col-xs-12 ">
+		<!--image goes here with ng-src-->
+		<img src="https://placeholdit.imgix.net/~text?txtsize=23&bg=ffffff&txtclr=000000&txt=250%C3%97250&w=250&h=250" width="40px" height="100%" style="display: inline-block; margin:0; padding:0; float: left;">
+
+		<div class="profile">
+			<p class="profile-name">
+				{{vm.content.uploader}}
+			</p>
+			<p class="profile-link">
+				View Profile
+				<i class="fa fa-arrow-circle-o-right"></i>
+			</p>
+		</div>
+	</div>
+	
+	<!-- bitrate/size/format etc-->
+	<div class="col-md-4 col-sm-4 col-xs-12 sample-info">
+		<ul>
+			<li>
+				<p class="sample-info-title">BITRATE</p>
+				<p class="sample-info-content">{{vm.content.bitrate}}</p>
+			</li>
+			<li>
+				<p class="sample-info-title">SIZE</p>
+				<p class="sample-info-content">{{vm.content.size}}</p>
+			</li>
+			<li>
+				<p class="sample-info-title">FORMAT</p>
+				<p class="sample-info-content">{{vm.content.format}}</p>
+			</li>
+		</ul>
+	</div>
+</div>
