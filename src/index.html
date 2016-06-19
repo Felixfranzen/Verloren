@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html ng-app="ngBoilerplate" ng-controller="AppCtrl">
+<html ng-app="verloren" ng-controller="AppCtrl">
   <head>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
+
     <title ng-bind="pageTitle"></title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- font awesome from BootstrapCDN -->
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.css" rel="stylesheet">
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
@@ -38,6 +38,11 @@
 
 <div class="container-fluid" style="margin-top: 70px;">
   <div ui-view="main"></div>   
-</div>     
+</div> 
+
+
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script> 
 </body>
 </html>

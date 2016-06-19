@@ -1,4 +1,4 @@
-angular.module("verloren.sounds",['ui.router'])
+angular.module("verloren.sounds",['ui.router', 'verloren.api'])
 
 .config(function config($stateProvider){
 	$stateProvider.state("sounds", {
@@ -14,61 +14,32 @@ angular.module("verloren.sounds",['ui.router'])
 })
 
 .controller("SoundsController", SoundsController);
-SoundsController.$inject = [];
-function SoundsController(){
+SoundsController.$inject = ["apiFactory"];
+function SoundsController(apiFactory){
 	var vm = this;
 
-	vm.currentCategory = "loops";
-	vm.categories = ["loops", "kick", "snare", "clap", "cymbal", "tom", "noise", "hihat"];
-	
+	vm.selectedCategory = "loop";
+	vm.categories = ["loop", "kick", "snare", "clap", "cymbal", "tom", "noise", "hihat"];
+	vm.samples = apiFactory.getSamplesFromCategory(vm.selectedCategory);
 	vm.categoryClicked = categoryClicked;
 	vm.categoryClasses = categoryClasses;
 
 
 	function categoryClicked(value){
-		if (value !== vm.currentCategory){
-			vm.currentCategory = value;
-			//get shit from database and populate vm.samples
+		if (value !== vm.selectedCategory){
+			//remove listener
+			vm.samples.$destroy();
+			
+			//update sample list
+			vm.selectedCategory = value;
+			vm.samples = apiFactory.getSamplesFromCategory(value);
 		}
 	}
-
-	vm.samples = [
-		{
-			id: 0,
-			title: "808 Demo Loop",
-			pack: "Essential 808 samples",
-			uploader: "Rodhad",
-			bitrate: "44100",
-			size: "1MB",
-			format: ".MP3",
-			url: "assets/samples/demo.mp3"
-		},
-		{
-			id: 1,
-			title: "909 Kick",
-			pack: "Essential 909 samples",
-			uploader: "Jeff Mills",
-			bitrate: "44100",
-			size: "193KB",
-			format: ".WAV",
-			url: "assets/samples/kicktwo.wav"
-		},
-		{
-			id: 2,
-			title: "707 DEMO LOOP",
-			pack: "Essential 808 samples",
-			uploader: "Dusky",
-			bitrate: "44100",
-			size: "193KB",
-			format: ".MP3",
-			url: "assets/samples/kick.wav"
-		}
-	];
 
 	function categoryClasses(index){
 		var classes = "";
 	
-		if (vm.categories[index] === vm.currentCategory){
+		if (vm.categories[index] === vm.selectedCategory){
 				classes += "active ";
 			}
 

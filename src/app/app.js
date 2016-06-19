@@ -1,19 +1,18 @@
-angular.module( 'ngBoilerplate', [
+angular.module( 'verloren', [
   'templates-app',
   'templates-common',
   'ngBoilerplate.home',
   'ui.router',
   'verloren.sounds',
-  'verloren.sample'
+  'verloren.sample',
+  'verloren.api'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise( '/sounds' );
 })
 
-.run( function run () {
-})
-
+.run(appRunning)
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     if ( angular.isDefined( toState.data.pageTitle ) ) {
@@ -23,4 +22,10 @@ angular.module( 'ngBoilerplate', [
 })
 
 ;
+
+
+appRunning.$inject = ["apiFactory"];
+function appRunning(apiFactory){
+  apiFactory.initApp();
+}
 

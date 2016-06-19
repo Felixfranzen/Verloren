@@ -18,11 +18,12 @@
 	</div>
 
 	<!-- Download links -->
-	<div class="col-md-4 sample-download">
-		<button class="btn btn-download">
+	<div class="col-md-4 sample-download" ng-show="vm.ready">
+		<a href ng-href="{{vm.downloadLink}}">
+		<button class="btn btn-download" ng-click="vm.download()">
 			<i class="fa fa-cloud-download"></i>
 			Download
-		</button>
+		</button></a>
 		<button class="btn btn-download btn-audiobin">
 			Add to Audiobin
 		</button>
@@ -33,6 +34,7 @@
 		<!--$element selects this div and populates it with the wavesurfer waveform-->
 		<!--<ng-wavesurfer url="vm.url"></ng-wavesurfer>-->
 		<!--<div id="waveform"></div>-->
+		<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw waveform-spinner" ng-if="!vm.ready"></i>
 	</div>
 
 	<!-- link to profile -->

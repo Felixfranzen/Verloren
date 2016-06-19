@@ -1,14 +1,15 @@
-angular.module("verloren.sample", [])
+angular.module("verloren.sample", ['verloren.api'])
 .directive("sample", sample);
 
 function sample(){
 
-	sampleController.$inject = ["$element"];
+	sampleController.$inject = ["$element", "apiFactory", "$scope"];
 
 	return {
 		restrict: "E",
 		scope: {
-			content: "="
+			content: "=",
+			category: "="
 		},
 		controller: sampleController,
 		controllerAs: "vm",
@@ -16,7 +17,7 @@ function sample(){
 		bindToController: true
 	};
 
-	function sampleController($element){
+	function sampleController($element, apiFactory, $scope){
 		var vm = this;
 
 		var wavesurfer = WaveSurfer.create({
@@ -26,28 +27,32 @@ function sample(){
 			barWidth: 3
 		});
 
-		vm.wavesurfer = wavesurfer;
+		vm.ready = false;
+		vm.downloadLink = "";
 		vm.play = playsample;
-		vm.download = download;
 		vm.addToAudioBin = addToAudioBin;
 
-
-		vm.wavesurfer.on('error', function (string) {
-			console.log(string);
+		apiFactory.getSampleFile(vm.category, vm.content.url).then(function(url){
+			wavesurfer.load(url);
+			wavesurfer.on('ready', function () {
+				$scope.$apply(function(){
+					vm.ready = true;
+					vm.downloadLink = url;
+				});
+			});
 		});
-		
-		wavesurfer.load(vm.content.url);
 
 		//functions
 		function playsample(){
-			if (vm.wavesurfer.isPlaying()){
-				vm.wavesurfer.stop();
-			} else {
-				vm.wavesurfer.playPause();
+			if(wavesurfer !== undefined){
+				if (wavesurfer.isPlaying()){
+					wavesurfer.stop();
+				} else {
+					wavesurfer.playPause();
+				}
 			}
 		}
-		//TODO, add these
-		function download(){}
+
 		function addToAudioBin(){}
 
 
