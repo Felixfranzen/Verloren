@@ -17,6 +17,21 @@ angular.module("verloren.sounds",['ui.router'])
 SoundsController.$inject = [];
 function SoundsController(){
 	var vm = this;
+
+	vm.currentCategory = "loops";
+	vm.categories = ["loops", "kick", "snare", "clap", "cymbal", "tom", "noise", "hihat"];
+	
+	vm.categoryClicked = categoryClicked;
+	vm.categoryClasses = categoryClasses;
+
+
+	function categoryClicked(value){
+		if (value !== vm.currentCategory){
+			vm.currentCategory = value;
+			//get shit from database and populate vm.samples
+		}
+	}
+
 	vm.samples = [
 		{
 			id: 0,
@@ -49,4 +64,41 @@ function SoundsController(){
 			url: "assets/samples/kick.wav"
 		}
 	];
+
+	function categoryClasses(index){
+		var classes = "";
+	
+		if (vm.categories[index] === vm.currentCategory){
+				classes += "active ";
+			}
+
+		switch (index % 8){
+			case 1:
+				classes += "green";
+				break;
+			case 2:
+				classes += "greentwo";
+				break;
+			case 3:
+				classes += "light-blue";
+				break;
+			case 4:
+				classes += "dark-blue";
+				break;
+			case 5:
+				classes += "purpleone";
+				break;
+			case 6:
+				classes += "purpletwo";
+				break;
+			case 7:
+				classes += "purplethree";
+				break;
+			default: 
+				classes += "green";
+				break;
+		}
+
+		return classes;
+	}
 }

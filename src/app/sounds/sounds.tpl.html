@@ -4,32 +4,15 @@
       <!-- Todo, gör detta till directive-->
       <div class="sidebar-left-content">
         <ul class="sample-type-select">
-          <li>
-            <button class="btn btn-instrument green">LOOPS</button>
-          </li>
-          <li>
-            <button class="btn btn-instrument green">KICK</button>
-          </li>
-          <li>
-            <button class="btn btn-instrument greentwo">SNARE</button>
-          </li>
-          <li>
-            <button class="btn btn-instrument light-blue">CLAP</button>
-          </li>
-          <li>
-            <button class="btn btn-instrument dark-blue">CYMBAL</button>
-          </li>
-          <li>
-            <button class="btn btn-instrument purpleone">TOM</button>
-          </li>
-          <li>
-            <button class="btn btn-instrument purpletwo">NOISE</button>
-          </li>
-          <li>
-            <button class="btn btn-instrument purplethree">HI HAT</button>
-          </li>
 
-
+          <li ng-repeat="category in vm.categories">
+            <button class="btn btn-instrument"
+                    ng-class="vm.categoryClasses($index)"
+                    ng-click="vm.categoryClicked(category)"
+            >
+            {{category}}
+          </button>
+          </li>
         </ul>
       </div>
 		</div>

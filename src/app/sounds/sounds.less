@@ -13,7 +13,18 @@
 	border-left: 2px solid @dark-blue;
 	padding: 0 10px;
 	margin-bottom: 10px;
+}
+
+.sample-type-select li:focus, .sample-type-select li:active {
+	outline: none;
+}
+
+.sample-type-select li button {
 	text-transform: uppercase;
+}
+
+.sample-type-select li button.active {
+	opacity: 1;
 }
 
 .odd-background {

@@ -3,8 +3,13 @@
 }
 
 .btn:focus, .btn:active:focus {
-	outline: none;
+	outline: none !important;
 }
+
+.btn.active {
+	box-shadow: none !important;
+}
+
 .btn-download {
 	padding: 10px 20px;
 	margin-right: 10px;
@@ -41,6 +46,6 @@
 .btn-instrument:hover,
 .btn-instrument:focus,
 .btn-instrument:active, {
-	opacity: 1;
+	opacity: 0.8;
 	color: #FFFFFF;
 }
