@@ -38,38 +38,11 @@ function SoundsController(apiFactory){
 
 	function categoryClasses(index){
 		var classes = "";
-	
+		var colors = ["green", "green", "greentwo", "light-blue", "dark-blue", "purpleone", "purpletwo", "purplethree"];
 		if (vm.categories[index] === vm.selectedCategory){
 				classes += "active ";
 			}
-
-		switch (index % 8){
-			case 1:
-				classes += "green";
-				break;
-			case 2:
-				classes += "greentwo";
-				break;
-			case 3:
-				classes += "light-blue";
-				break;
-			case 4:
-				classes += "dark-blue";
-				break;
-			case 5:
-				classes += "purpleone";
-				break;
-			case 6:
-				classes += "purpletwo";
-				break;
-			case 7:
-				classes += "purplethree";
-				break;
-			default: 
-				classes += "green";
-				break;
-		}
-
+		classes += colors[index % colors.length];
 		return classes;
 	}
 }
