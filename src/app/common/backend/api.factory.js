@@ -11,7 +11,9 @@ function apiFactory($firebaseArray){
 	return {
 		initApp: initApp,
 		getSamplesFromCategory: getSamplesFromCategory,
-		getSampleFile: getSampleFile
+		getSampleFile: getSampleFile,
+		getSampleCategories: getSampleCategories,
+		getSampleTags: getSampleTags
 	};
 
 	function initApp(){
@@ -35,5 +37,15 @@ function apiFactory($firebaseArray){
 
 	function getSampleFile(category, id){
 		return storage.ref().child("samples/" + category + "/" + id).getDownloadURL();
+	}
+	
+	//TODO: Add to sounds.js
+	function getSampleCategories(){
+		return $firebaseArray(database.ref("categories/"));
+	}
+
+	//TODO: Add to sounds.js
+	function getSampleTags(){
+		return $firebaseArray(database.ref("tags/"));
 	}
 }

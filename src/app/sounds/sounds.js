@@ -19,14 +19,21 @@ function SoundsController(apiFactory){
 	var vm = this;
 
 	vm.selectedCategory = "loop";
+
+	//TODO: Retrieve from backend instead
 	vm.categories = ["loop", "kick", "snare", "clap", "cymbal", "tom", "noise", "hihat"];
+	vm.tags = ["techno", "tech house", "processed", "energetic", "atmospheric", "vintage", "distorted", "melodic"];
 	vm.samples = apiFactory.getSamplesFromCategory(vm.selectedCategory);
+
+	vm.activeTags = [];
+
 	vm.categoryClicked = categoryClicked;
 	vm.categoryClasses = categoryClasses;
-
+	vm.filterSamples = filterSamples;
+	vm.tagClicked = tagClicked;
 
 	function categoryClicked(value){
-		if (value !== vm.selectedCategory){
+		if (value !== vm.selectedCategory){	
 			//remove listener
 			vm.samples.$destroy();
 			
@@ -45,4 +52,24 @@ function SoundsController(apiFactory){
 		classes += colors[index % colors.length];
 		return classes;
 	}
+
+	function filterSamples(){
+		return function(value){
+			//TODO: make the tags actually work
+			return (vm.activeTags.indexOf(value.title) > -1 || vm.activeTags.length === 0);
+		};
+	}
+
+	function tagClicked(value){
+		var index = vm.activeTags.indexOf(value);
+		if (index === -1){
+			vm.activeTags.push(value);
+		} else {
+			vm.activeTags.splice(index, 1);
+		}
+
+
+		
+	}
+
 }

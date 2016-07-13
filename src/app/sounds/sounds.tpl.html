@@ -20,14 +20,17 @@
 <!--right sidebar-->
     <div class="sidebar-right-wrapper">
       <div class="sidebar-right-content">
-        <!-- Directive för filtrering här-->
+        <div class="sample-tags">
+          <h5 style="font-weight: 600">TAGS</h5>
+          <button class="btn btn-primary" uib-btn-checkbox ng-model="checkbox" ng-repeat="tag in vm.tags" ng-click="vm.tagClicked(tag)">{{tag}}</button>
+        </div>
       </div>
     </div> 
 
 <!--Main Content-->
 		<div class="main-content-wrapper">
 			<div class="container-fluid">
-           	<div class="row" ng-repeat="sample in vm.samples">
+           	<div class="row" ng-repeat="sample in vm.samples | filter:vm.filterSamples()">
            		<div class="col-md-12" ng-class-odd="'odd-background'">
                 <sample content="sample" category="vm.selectedCategory"></sample>
               </div>

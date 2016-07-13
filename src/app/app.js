@@ -3,6 +3,7 @@ angular.module( 'verloren', [
   'templates-common',
   'ngBoilerplate.home',
   'ui.router',
+  'ui.bootstrap',
   'verloren.sounds',
   'verloren.sample',
   'verloren.api'
