@@ -30,10 +30,11 @@ function SoundsController(apiFactory){
 	vm.categoryClicked = categoryClicked;
 	vm.categoryClasses = categoryClasses;
 	vm.filterSamples = filterSamples;
-	vm.tagClicked = tagClicked;
 
 	function categoryClicked(value){
 		if (value !== vm.selectedCategory){	
+			vm.checkboxes = {};
+			vm.activeTags = [];
 			//remove listener
 			vm.samples.$destroy();
 			
@@ -58,18 +59,6 @@ function SoundsController(apiFactory){
 			//TODO: make the tags actually work
 			return (vm.activeTags.indexOf(value.title) > -1 || vm.activeTags.length === 0);
 		};
-	}
-
-	function tagClicked(value){
-		var index = vm.activeTags.indexOf(value);
-		if (index === -1){
-			vm.activeTags.push(value);
-		} else {
-			vm.activeTags.splice(index, 1);
-		}
-
-
-		
 	}
 
 }

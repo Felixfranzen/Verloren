@@ -22,7 +22,7 @@
       <div class="sidebar-right-content">
         <div class="sample-tags">
           <h5 style="font-weight: 600">TAGS</h5>
-          <button class="btn btn-primary" uib-btn-checkbox ng-model="checkbox" ng-repeat="tag in vm.tags" ng-click="vm.tagClicked(tag)">{{tag}}</button>
+          <filter-buttons active-filters="vm.activeTags" filters="vm.tags" button-model="vm.checkboxes"></filter-buttons>
         </div>
       </div>
     </div> 

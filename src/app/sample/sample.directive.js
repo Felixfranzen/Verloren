@@ -28,6 +28,7 @@ function sample(){
 		});
 
 		vm.ready = false;
+		vm.playing = false;
 		vm.downloadLink = "";
 		vm.play = playsample;
 		vm.addToAudioBin = addToAudioBin;
@@ -42,13 +43,22 @@ function sample(){
 			});
 		});
 
+		wavesurfer.on('finish', function () {
+			wavesurfer.stop();
+			$scope.$apply(function(){
+				vm.playing = false;
+			});
+		});
+
 		//functions
 		function playsample(){
 			if(wavesurfer !== undefined){
 				if (wavesurfer.isPlaying()){
-					wavesurfer.stop();
+					wavesurfer.pause();
+					vm.playing = false;
 				} else {
-					wavesurfer.playPause();
+					wavesurfer.play();
+					vm.playing = true;
 				}
 			}
 		}

@@ -6,7 +6,8 @@ angular.module( 'verloren', [
   'ui.bootstrap',
   'verloren.sounds',
   'verloren.sample',
-  'verloren.api'
+  'verloren.api',
+  'verloren.filterButtons'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {

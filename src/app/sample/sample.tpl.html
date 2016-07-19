@@ -3,7 +3,7 @@
 	<div class="col-md-8 sample-title">
 		<div class="play-button">
 			
-			<i class="fa fa-play-circle-o" ng-click="vm.play()"></i>
+			<i class="fa" ng-click="vm.play()" ng-class="{'fa-play-circle-o': !vm.playing, 'fa-pause-circle-o': vm.playing}"></i>
 
 		</div>
 		<div class="sample-title-text">
