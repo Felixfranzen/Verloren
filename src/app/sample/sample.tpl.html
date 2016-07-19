@@ -34,7 +34,9 @@
 		<!--$element selects this div and populates it with the wavesurfer waveform-->
 		<!--<ng-wavesurfer url="vm.url"></ng-wavesurfer>-->
 		<!--<div id="waveform"></div>-->
-		<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw waveform-spinner" ng-if="!vm.ready"></i>
+		<div class="waveform-spinner" ng-if="!vm.ready">
+			<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+		</div>
 	</div>
 
 	<!-- link to profile -->
