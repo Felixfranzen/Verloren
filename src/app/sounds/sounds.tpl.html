@@ -20,13 +20,17 @@
 <!--right sidebar-->
     <div class="sidebar-right-wrapper">
       <div class="sidebar-right-content">
-        <div class="sample-tags">
-          <h5 style="font-weight: 600">TAGS</h5>
+        
+        <div class="sample-tags filter-item">
+          <h5>TAGS</h5>
           <filter-buttons active-filters="vm.activeTags" filters="vm.tags" button-model="vm.checkboxes"></filter-buttons>
+        </div>
 
-          <h5 style="font-weight: 600">BITRATE</h5>
+        <div class="filter-item">
+          <h5>BITRATE</h5>
           <filter-slider value="400" min="0" max="500"></filter-slider>
         </div>
+
       </div>
     </div> 
 
