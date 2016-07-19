@@ -1,4 +1,3 @@
-/*global Firebase */
 angular.module("verloren.audioPlayer", [])
 .factory("audioPlayer", audioPlayer);
 
