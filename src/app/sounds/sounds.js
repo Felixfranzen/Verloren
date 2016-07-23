@@ -23,9 +23,11 @@ function SoundsController(apiFactory){
 	//TODO: Retrieve from backend instead
 	vm.categories = ["loop", "kick", "snare", "clap", "cymbal", "tom", "noise", "hihat"];
 	vm.tags = ["techno", "tech house", "processed", "energetic", "atmospheric", "vintage", "distorted", "melodic"];
+	vm.formats = [".MP3", ".WAV"];
 	vm.samples = apiFactory.getSamplesFromCategory(vm.selectedCategory);
 
 	vm.activeTags = [];
+	vm.activeFormats = [];
 
 	vm.categoryClicked = categoryClicked;
 	vm.categoryClasses = categoryClasses;
@@ -33,8 +35,11 @@ function SoundsController(apiFactory){
 
 	function categoryClicked(value){
 		if (value !== vm.selectedCategory){	
+
+			//Clear filters
 			vm.checkboxes = {};
 			vm.activeTags = [];
+			vm.activeFormats = [];
 			//remove listener
 			vm.samples.$destroy();
 			
@@ -57,7 +62,7 @@ function SoundsController(apiFactory){
 	function filterSamples(){
 		return function(value){
 			//TODO: make the tags actually work
-			return (vm.activeTags.indexOf(value.title) > -1 || vm.activeTags.length === 0);
+			return vm.activeFormats.indexOf(value.format) > -1 || vm.activeFormats.length === 0;
 		};
 	}
 
