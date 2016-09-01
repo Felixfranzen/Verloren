@@ -23,8 +23,6 @@ SoundsController.$inject = ["apiFactory","currentAuth"];
 function SoundsController(apiFactory, currentAuth){
 	var vm = this;
 
-	console.log(currentAuth);
-
 	vm.selectedCategory = "loop";
 
 	//TODO: Retrieve from backend instead

@@ -7,7 +7,9 @@
 					class="form-control" 
 					placeholder="example@example.com" 
 					ng-required="true" 
-					ng-model="vm.email"/>
+					ng-model="vm.email"
+					ng-class="{'invalid': vm.emailError || $invalid}"/>
+			<span class="login-error-message" ng-show="vm.emailError">{{vm.emailError}}</span>
 		</label>
 
 		<label>
@@ -16,7 +18,10 @@
 					class="form-control" 
 					placeholder="minimum of 8 characters" 
 					ng-required="true" 
-					ng-model="vm.password"/>
+					ng-model="vm.password"
+					ng-class="{'invalid': vm.passwordError || $invalid}"/>
+
+			<span class="login-error-message" ng-show="vm.passwordError">{{vm.passwordError}}</span>
 		</label>
 
 		<button type="submit" class="btn btn-secondary">Log in</button>

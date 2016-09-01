@@ -26,8 +26,11 @@ angular.module( 'verloren', [
     }
   });
   
+  $scope.loggedIn = false;
+
   authFactory.onAuthChange(function(user){
     if(!user){
+        $scope.loggedIn = false;
         $state.go("login");
     } else {
         $scope.loggedIn = true;

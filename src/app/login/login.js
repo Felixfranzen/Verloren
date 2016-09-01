@@ -19,15 +19,26 @@ loginController.$inject = ['authFactory', '$state'];
 function loginController(authFactory, $state){
 	var vm = this;
 
-	vm.email = "";
-	vm.password = "";
+	var userNotFound = "auth/user-not-found";
+	var invalidPassword = "auth/wrong-password";
 
 	vm.submit = submit;
 
 	function submit(){
 		authFactory.login(vm.email,vm.password).then(function(result){
-			console.log(result);
 			$state.go("sounds");
+		})
+
+		.catch(function(error){
+			switch (error.code){
+				case userNotFound:
+					vm.emailError = "No user with this email";
+					break
+
+				case invalidPassword:
+					vm.passwordError = "The password was incorrect";
+					break
+			} 
 		});
 	}
 }
