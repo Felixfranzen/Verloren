@@ -24,7 +24,7 @@
 			<span class="login-error-message" ng-show="vm.passwordError">{{vm.passwordError}}</span>
 		</label>
 
-		<button type="submit" class="btn btn-secondary">Log in</button>
+		<button type="submit" class="btn btn-secondary" ng-disabled="$invalid">Log in</button>
 	</form>	
 
 	<div class="sign-up-link">

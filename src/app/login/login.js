@@ -25,11 +25,16 @@ function loginController(authFactory, $state){
 	vm.submit = submit;
 
 	function submit(){
+
+		vm.emailError = "";
+		vm.passwordError = "";
+
 		authFactory.login(vm.email,vm.password).then(function(result){
 			$state.go("sounds");
 		})
 
 		.catch(function(error){
+
 			switch (error.code){
 				case userNotFound:
 					vm.emailError = "No user with this email";
