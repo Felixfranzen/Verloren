@@ -38,11 +38,11 @@ function loginController(authFactory, $state){
 			switch (error.code){
 				case userNotFound:
 					vm.emailError = "No user with this email";
-					break
+					break;
 
 				case invalidPassword:
 					vm.passwordError = "The password was incorrect";
-					break
+					break;
 			} 
 		});
 	}
