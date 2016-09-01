@@ -26,11 +26,6 @@
           <filter-buttons active-filters="vm.activeTags" filters="vm.tags" button-model="vm.checkboxes"></filter-buttons>
         </div>
 
-        <div class="filter-item">
-          <h5>BITRATE</h5>
-          <filter-slider value="400" min="0" max="500"></filter-slider>
-        </div>
-
         <div class="sample-tags filter-item">
           <h5>FORMATS</h5>
           <filter-buttons active-filters="vm.activeFormats" filters="vm.formats" button-model="vm.checkboxes"></filter-buttons>
@@ -43,7 +38,7 @@
 		<div class="main-content-wrapper">
 			<div class="container-fluid">
            	<div class="row" ng-repeat="sample in vm.samples | filter:vm.filterSamples()">
-           		<div class="col-md-12" ng-class-odd="'odd-background'">
+           		<div class="col-md-12" ng-class-odd="'odd-background'" ng-class-even="'sample-background'">
                 <sample content="sample" category="vm.selectedCategory"></sample>
               </div>
            	</div>

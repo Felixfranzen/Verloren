@@ -9,14 +9,21 @@ angular.module("verloren.sounds",['ui.router', 'verloren.api'])
 				templateUrl: "sounds/sounds.tpl.html"
 			}
 		},
-		data:{ pageTitle: 'Sounds' }
+		data:{ pageTitle: 'Sounds' },
+		resolve: {
+			"currentAuth": ["authFactory", function(authFactory) {
+				return authFactory.requireSignIn();
+			}]
+		}
 	});
 })
 
 .controller("SoundsController", SoundsController);
-SoundsController.$inject = ["apiFactory"];
-function SoundsController(apiFactory){
+SoundsController.$inject = ["apiFactory","currentAuth"];
+function SoundsController(apiFactory, currentAuth){
 	var vm = this;
+
+	console.log(currentAuth);
 
 	vm.selectedCategory = "loop";
 
