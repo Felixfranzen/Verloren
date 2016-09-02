@@ -33,7 +33,7 @@ function loginController(authFactory, $state){
 			$state.go("sounds");
 		})
 
-		.catch(function(error){
+		.catch(function(error){ 
 
 			switch (error.code){
 				case userNotFound:

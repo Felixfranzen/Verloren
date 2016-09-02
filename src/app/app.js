@@ -37,7 +37,7 @@ angular.module( 'verloren', [
     }
   });
 
-  $scope.signOut = function(){
+  $scope.logout = function(){
         $scope.loggedIn = false;
         authFactory.logout();
     };
