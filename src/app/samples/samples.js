@@ -4,7 +4,7 @@ angular.module("verloren.samples",['ui.router', 'verloren.api'])
 	$stateProvider.state("sounds.samples", {
 		url: "/:category",
 		views: {
-			"sounds": {
+			"samples": {
 				controller: "samplesController as vm",
 				templateUrl: "samples/samples.tpl.html"
 			}
