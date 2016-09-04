@@ -27,9 +27,8 @@ function SoundsController(apiFactory, currentAuth){
 
 	//TODO: Retrieve from backend instead
 	vm.categories = ["loop", "kick", "snare", "clap", "cymbal", "tom", "noise", "hihat"];
-	vm.tags = ["techno", "tech house", "processed", "energetic", "atmospheric", "vintage", "distorted", "melodic"];
-	vm.formats = [".MP3", ".WAV"];
 	vm.samples = apiFactory.getSamplesFromCategory(vm.selectedCategory);
+	vm.filters = apiFactory.getFiltersForCategory(vm.selectedCategory);
 
 	vm.activeTags = [];
 	vm.activeFormats = [];
@@ -49,8 +48,10 @@ function SoundsController(apiFactory, currentAuth){
 			vm.samples.$destroy();
 			
 			//update sample list
-			vm.selectedCategory = value;
 			vm.samples = apiFactory.getSamplesFromCategory(value);
+			vm.filters = apiFactory.getFiltersForCategory(value);
+
+			vm.selectedCategory = value;
 		}
 	}
 
@@ -65,9 +66,16 @@ function SoundsController(apiFactory, currentAuth){
 	}
 
 	function filterSamples(){
-		return function(value){
-			//TODO: make the tags actually work
-			return vm.activeFormats.indexOf(value.format) > -1 || vm.activeFormats.length === 0;
+		return function(sample){
+			//check if the sample has all tags
+			for (var i = 0; i < vm.activeTags.length; i++){
+				if (sample.tags.indexOf(vm.activeTags[i]) === -1){
+					return false;
+				}
+			}
+
+			//check if the sample has the right format
+			return vm.activeFormats.indexOf(sample.format) > -1 || vm.activeFormats.length === 0;
 		};
 	}
 

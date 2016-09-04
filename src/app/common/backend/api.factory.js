@@ -2,8 +2,8 @@
 angular.module("verloren.api", ['firebase'])
 .factory("apiFactory", apiFactory);
 
-apiFactory.$inject = ["$firebaseArray"];
-function apiFactory($firebaseArray){
+apiFactory.$inject = ["$firebaseArray", "$firebaseObject"];
+function apiFactory($firebaseArray, $firebaseObject){
 	
 	var database;
 	var storage;
@@ -13,7 +13,7 @@ function apiFactory($firebaseArray){
 		getSamplesFromCategory: getSamplesFromCategory,
 		getSampleFile: getSampleFile,
 		getSampleCategories: getSampleCategories,
-		getSampleTags: getSampleTags
+		getFiltersForCategory: getFiltersForCategory
 	};
 
 	function initApp(){
@@ -45,7 +45,7 @@ function apiFactory($firebaseArray){
 	}
 
 	//TODO: Add to sounds.js
-	function getSampleTags(){
-		return $firebaseArray(database.ref("tags/"));
+	function getFiltersForCategory(category){
+		return $firebaseObject(database.ref("filters/" + category));
 	}
 }
