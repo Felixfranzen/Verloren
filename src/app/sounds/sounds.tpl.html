@@ -4,7 +4,9 @@
       <!-- Todo, gör detta till directive-->
       <div class="sidebar-left-content">
         <ul class="sample-type-select">
-
+          <li class="category-placeholder" ng-repeat="val in [0,1,2]" ng-if="!vm.categories">
+            <button class="btn btn-instrument"></button>
+          </li>
           <li ng-repeat="category in vm.categories">
             <button class="btn btn-instrument"
                     ng-class="vm.categoryClasses($index)"

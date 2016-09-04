@@ -76,3 +76,26 @@
 .sample-type-select li button.purplethree {
 	background-color: #9324DC;
 }
+
+.category-placeholder button {
+	opacity: 0;
+	animation: 400ms fade-roll ease-in-out infinite alternate;
+}
+
+.category-placeholder:nth-child(2) button{
+	animation-delay: 200ms;
+}
+
+.category-placeholder:nth-child(3) button{
+	animation-delay: 400ms;
+}
+
+@keyframes fade-roll{
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 0.1
+	}
+}
