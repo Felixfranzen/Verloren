@@ -8,7 +8,8 @@
           <li ng-repeat="category in vm.categories">
             <button class="btn btn-instrument"
                     ng-class="vm.categoryClasses($index)"
-                    ng-click="vm.categoryClicked(category)"
+                    ui-sref="sounds.samples({category: category})"
+                    ui-sref-active="active"
             >
             {{category}}
           </button>
@@ -16,31 +17,6 @@
         </ul>
       </div>
 		</div>
+    <div ui-view="sounds"></div>
 
-<!--right sidebar-->
-    <div class="sidebar-right-wrapper">
-      <div class="sidebar-right-content">
-        <div class="sample-tags filter-item">
-          <h5>TAGS</h5>
-          <filter-buttons active-filters="vm.activeTags" filters="vm.filters.tags" button-model="vm.checkboxes"></filter-buttons>
-        </div>
-
-        <div class="sample-formats filter-item">
-          <h5>FORMATS</h5>
-          <filter-buttons active-filters="vm.activeFormats" filters="vm.filters.formats" button-model="vm.checkboxes"></filter-buttons>
-        </div>
-
-      </div>
-    </div> 
-
-<!--Main Content-->
-		<div class="main-content-wrapper">
-			<div class="container-fluid">
-           	<div class="row" ng-repeat="sample in vm.samples | filter:vm.filterSamples()">
-           		<div class="col-md-12" ng-class-odd="'odd-background'" ng-class-even="'sample-background'">
-                <sample content="sample" category="vm.selectedCategory"></sample>
-              </div>
-           	</div>
-      </div>
-    </div>
 </div>

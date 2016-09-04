@@ -30,7 +30,7 @@ function loginController(authFactory, $state){
 		vm.passwordError = "";
 
 		authFactory.login(vm.email,vm.password).then(function(result){
-			$state.go("sounds");
+			$state.go("sounds.samples",{category:"loop"});
 		})
 
 		.catch(function(error){ 

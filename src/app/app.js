@@ -5,6 +5,7 @@ angular.module( 'verloren', [
   'ui.router',
   'ui.bootstrap',
   'verloren.sounds',
+  'verloren.samples',
   'verloren.sample',
   'verloren.api',
   'verloren.filterButtons',
@@ -15,7 +16,7 @@ angular.module( 'verloren', [
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/sounds' );
+  $urlRouterProvider.otherwise( '/samples/loop' );
 })
 
 .run(appRunning)
