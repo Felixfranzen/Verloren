@@ -88,3 +88,26 @@
 	color: @dark-blue;
 	opacity: 1;
 }
+
+.btn-placeholder {
+	opacity: 0;
+	animation: 600ms fade-roll ease-in-out infinite alternate;
+}
+
+.btn-placeholder:nth-child(2){
+	animation-delay: 300ms;
+}
+
+.btn-placeholder:nth-child(3){
+	animation-delay: 600ms;
+}
+
+@keyframes fade-roll{
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 0.2
+	}
+}
