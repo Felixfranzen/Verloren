@@ -25,8 +25,13 @@ function SoundsController(apiFactory, currentAuth){
 
 	vm.selectedCategory = "loop";
 
-	//TODO: Retrieve from backend instead
-	vm.categories = ["loop", "kick", "snare", "clap", "cymbal", "tom", "noise", "hihat"];
+	var categories = apiFactory.getSampleCategories();
+	categories.$loaded(function(data){
+		vm.categories = data.map(function(elem){
+			return elem.$value;
+		});
+	});
+	
 	vm.samples = apiFactory.getSamplesFromCategory(vm.selectedCategory);
 	vm.filters = apiFactory.getFiltersForCategory(vm.selectedCategory);
 
