@@ -27,18 +27,16 @@ function samplesController(apiFactory, $stateParams){
 
 	vm.filterSamples = filterSamples;
 
-	function filterSamples(){
-		return function(sample){
-			//check if the sample has all tags
-			for (var i = 0; i < vm.activeTags.length; i++){
-				if (sample.tags.indexOf(vm.activeTags[i]) === -1){
-					return false;
-				}
+	function filterSamples(sample){
+		//check if the sample has all tags
+		for (var i = 0; i < vm.activeTags.length; i++){
+			if (sample.tags.indexOf(vm.activeTags[i]) === -1){
+				return false;
 			}
+		}
 
-			//check if the sample has the right format
-			return vm.activeFormats.indexOf(sample.format) > -1 || vm.activeFormats.length === 0;
-		};
+		//check if the sample has the right format
+		return vm.activeFormats.indexOf(sample.format) > -1 || vm.activeFormats.length === 0;
 	}
 
 }
