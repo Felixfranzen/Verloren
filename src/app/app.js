@@ -29,6 +29,7 @@ angular.module( 'verloren', [
   });
   
   $scope.loggedIn = false;
+  $scope.userEmail = "";
 
   authFactory.onAuthChange(function(user){
     if(!user){
@@ -36,6 +37,7 @@ angular.module( 'verloren', [
         $state.go("login");
     } else {
         $scope.loggedIn = true;
+        $scope.userEmail = user.email;
     }
   });
 

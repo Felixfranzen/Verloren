@@ -22,5 +22,6 @@ angular.module("verloren.profile",['ui.router', 'verloren.api', 'verloren.auth']
 profileController.$inject = ["apiFactory","currentAuth"];
 function profileController(apiFactory, currentAuth){
 	var vm = this;
-	console.log(currentAuth);
+	vm.userEmail = currentAuth.email;
+	
 }

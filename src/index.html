@@ -30,6 +30,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
+              <span class="text-dark navbar-profile-link" ui-sref="profile">{{userEmail}}</span>
               <button class="btn btn-default" ng-if="loggedIn" ng-click="logout()">Sign out</button>
             </li>
           </ul>
