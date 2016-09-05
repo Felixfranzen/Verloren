@@ -27,9 +27,8 @@ function signupController(authFactory, $state){
 				$state.go("sounds.samples",{category:"loop"});
 			
 			}).catch(function(error){
-				console.log(error)
 				vm.errorMessage = error.message;
-			})
+			});
 		}
 	}
 }
