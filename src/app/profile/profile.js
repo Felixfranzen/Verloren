@@ -19,9 +19,13 @@ angular.module("verloren.profile",['ui.router', 'verloren.api', 'verloren.auth']
 })
 
 .controller("profileController", profileController);
-profileController.$inject = ["apiFactory","currentAuth"];
-function profileController(apiFactory, currentAuth){
+profileController.$inject = ["apiFactory","currentAuth", "authFactory"];
+function profileController(apiFactory, currentAuth, authFactory){
 	var vm = this;
 	vm.userEmail = currentAuth.email;
-	
+	var userId = currentAuth.uid;
+	console.log(userId);
+	//vm.favorites = authFactory.getFavoritesForUser(userId);
+
+
 }

@@ -14,7 +14,7 @@ function authFactory($firebaseAuth){
 	};
 
 	function signUp(email,pass){
-
+		return auth.$createUserWithEmailAndPassword(email,pass);
 	}
 
 	function login(email,pass){

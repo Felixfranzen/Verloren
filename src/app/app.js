@@ -13,6 +13,7 @@ angular.module( 'verloren', [
   'verloren.audioPlayer',
   'verloren.auth',
   'verloren.login',
+  'verloren.signup',
   'verloren.profile'
 ])
 
@@ -34,6 +35,7 @@ angular.module( 'verloren', [
   authFactory.onAuthChange(function(user){
     if(!user){
         $scope.loggedIn = false;
+        $scope.userEmail = "";
         $state.go("login");
     } else {
         $scope.loggedIn = true;
