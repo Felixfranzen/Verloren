@@ -12,7 +12,8 @@ angular.module( 'verloren', [
   'verloren.filterSlider',
   'verloren.audioPlayer',
   'verloren.auth',
-  'verloren.login'
+  'verloren.login',
+  'verloren.profile'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
