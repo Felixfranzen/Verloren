@@ -1,1 +1,6 @@
-<h1>Profile!</h1>
+<h1>Your favorites</h1>
+<div class="row" ng-repeat="sample in vm.samples">
+	<div class="col-md-12">
+		<sample content="sample" toggle-favorite="vm.toggleFavorite" is-favorite="vm.isFavorite(sample.$id)"></sample>
+	</div>
+</div>

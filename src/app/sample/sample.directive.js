@@ -9,7 +9,8 @@ function sample(){
 		restrict: "E",
 		scope: {
 			content: "=",
-			category: "="
+			toggleFavorite: "=",
+			isFavorite: "="
 		},
 		controller: sampleController,
 		controllerAs: "vm",
@@ -31,9 +32,9 @@ function sample(){
 		vm.playing = false;
 		vm.downloadLink = "";
 		vm.play = playsample;
-		vm.addToAudioBin = addToAudioBin;
+		vm.toggle = toggle;
 
-		apiFactory.getSampleFile(vm.category, vm.content.url).then(function(url){
+		apiFactory.getSampleFile(vm.content.category, vm.content.url).then(function(url){
 			wavesurfer.load(url);
 			wavesurfer.on('ready', function () {
 				$scope.$evalAsync(function(){
@@ -62,6 +63,7 @@ function sample(){
 			});
 		});
 
+
 		//functions
 		function playsample(){
 			if(wavesurfer && vm.ready){
@@ -69,7 +71,9 @@ function sample(){
 			}
 		}
 
-		function addToAudioBin(){}
+		function toggle(){
+			vm.toggleFavorite(vm.content.$id);
+		}
 
 
 

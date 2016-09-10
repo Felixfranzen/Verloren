@@ -24,8 +24,8 @@
 			<i class="fa fa-cloud-download"></i>
 			Download
 		</button></a>
-		<button class="btn btn-download btn-audiobin">
-			Add to Audiobin
+		<button class="btn btn-download btn-audiobin" ng-click="vm.toggle()" ng-class="{'favorite': vm.isFavorite}">
+			Add to Favorites
 		</button>
 	</div>
 	

@@ -20,8 +20,8 @@ angular.module("verloren.sounds",['ui.router', 'verloren.api'])
 })
 
 .controller("soundsController", soundsController);
-soundsController.$inject = ["apiFactory","currentAuth"];
-function soundsController(apiFactory, currentAuth){
+soundsController.$inject = ["apiFactory"];
+function soundsController(apiFactory){
 	var vm = this;
 
 	var categories = apiFactory.getSampleCategories();
