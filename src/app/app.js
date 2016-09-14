@@ -33,6 +33,7 @@ angular.module( 'verloren', [
   $scope.userEmail = "";
 
   authFactory.onAuthChange(function(user){
+    console.log(user);
     if(!user){
         $scope.loggedIn = false;
         $scope.userEmail = "";

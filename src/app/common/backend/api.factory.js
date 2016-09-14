@@ -42,14 +42,7 @@ function apiFactory($firebaseArray, $firebaseObject){
 			allSamples.$loaded().then(function(){
 
 				var filtered = allSamples.filter(function(sample){
-					for (var i = 0; i < favorites.length; i++){
-						var key = favorites.$keyAt(i);
-						var record = favorites.$getRecord(key);
-
-						if (sample.$id === record.$value){
-							return true;
-						}
-					}
+					return favorites[sample.$id];
 				});
 
 				callback(filtered);
@@ -79,6 +72,6 @@ function apiFactory($firebaseArray, $firebaseObject){
 	}
 
 	function getFavoritesForUser(id){
-		return $firebaseArray(database.ref("users/" + id + "/favorites"));
+		return $firebaseObject(database.ref("users/" + id + "/favorites"));
 	}
 }

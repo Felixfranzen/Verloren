@@ -28,10 +28,10 @@
             <li></li>
             <li></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-right" ng-if="loggedIn">
             <li>
               <span class="text-dark navbar-profile-link" ui-sref="profile">{{userEmail}}</span>
-              <button class="btn btn-default" ng-if="loggedIn" ng-click="logout()">Sign out</button>
+              <button class="btn btn-default" ng-click="logout()">Sign out</button>
             </li>
           </ul>
         </div><!--/.nav-collapse -->

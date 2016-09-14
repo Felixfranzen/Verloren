@@ -1,4 +1,4 @@
-angular.module("verloren.samples",['ui.router', 'verloren.api', 'verloren.auth'])
+angular.module("verloren.samples",['ui.router', 'verloren.api', 'verloren.auth', "firebase"])
 
 .config(function config($stateProvider){
 	$stateProvider.state("sounds.samples", {
@@ -18,8 +18,8 @@ angular.module("verloren.samples",['ui.router', 'verloren.api', 'verloren.auth']
 })
 
 .controller("samplesController", samplesController);
-samplesController.$inject = ["apiFactory", "$stateParams", "currentAuth"];
-function samplesController(apiFactory, $stateParams, currentAuth){
+samplesController.$inject = ["apiFactory", "$stateParams", "currentAuth", "$firebaseObject"];
+function samplesController(apiFactory, $stateParams, currentAuth, $firebaseObject){
 	var vm = this;
 	vm.category = $stateParams.category;
 	vm.samples = apiFactory.getSamplesFromCategory(vm.category);
@@ -34,36 +34,12 @@ function samplesController(apiFactory, $stateParams, currentAuth){
 	vm.isFavorite = isFavorite;
 
 	function toggleFavorite(id){
-		if (vm.favorites.length === 0){
-			vm.favorites.$add(id);
-		} else {
-			var found = false;
-			for (var i = 0; i < vm.favorites.length; i++){
-				var key = vm.favorites.$keyAt(i);
-				var record = vm.favorites.$getRecord(key);
-				if (record.$value === id){
-					vm.favorites.$remove(record);
-					found = true;
-				}
-			}
-
-			if (!found){
-				vm.favorites.$add(id);
-			}
-		}
-		
+		vm.favorites[id] ? vm.favorites[id] = null : vm.favorites[id] = true;
+		vm.favorites.$save();
 	}
 
 	function isFavorite(id){
-		for (var i = 0; i < vm.favorites.length; i++){
-			var key = vm.favorites.$keyAt(i);
-			var record = vm.favorites.$getRecord(key);
-			if (record.$value === id){
-				return true;
-			}
-		}
-
-		return false;
+		return vm.favorites[id];
 	}
 
 	function filterSamples(sample){

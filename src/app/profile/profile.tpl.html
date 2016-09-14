@@ -1,5 +1,10 @@
-<h1>Your favorites</h1>
-<div class="row" ng-repeat="sample in vm.samples">
+<div class="row">
+	<div class="col-md-12" style="margin-bottom: 10px;">
+		<h1><i class="fa fa-heart" aria-hidden="true" style="margin-right: 20px; border-right: 1px solid rgba(255,255,255,0.5); padding-right: 20px"></i>Favorites</h1>
+	</div>
+</div>
+
+<div class="row" ng-repeat="sample in vm.samples" ng-class-odd="'sample-background'" ng-class-even="'odd-background'">
 	<div class="col-md-12">
 		<sample content="sample" toggle-favorite="vm.toggleFavorite" is-favorite="vm.isFavorite(sample.$id)"></sample>
 	</div>

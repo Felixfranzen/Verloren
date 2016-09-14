@@ -18,14 +18,16 @@
 	</div>
 
 	<!-- Download links -->
-	<div class="col-md-4 sample-download" ng-show="vm.ready">
-		<a href ng-href="{{vm.downloadLink}}">
-		<button class="btn btn-download" ng-click="vm.download()">
-			<i class="fa fa-cloud-download"></i>
-			Download
-		</button></a>
+	<div class="col-md-4 sample-download">
+		<a href ng-href="{{vm.downloadLink}}" ng-disabled="!vm.ready">
+			<button class="btn btn-download" ng-class="{'disabled': !vm.ready}">
+				<i class="fa fa-cloud-download"></i>
+				Download
+			</button>
+		</a>
 		<button class="btn btn-download btn-audiobin" ng-click="vm.toggle()" ng-class="{'favorite': vm.isFavorite}">
-			Add to Favorites
+			<i ng-if="vm.isFavorite" class="fa fa-heart" aria-hidden="true"></i>
+			<i ng-if="!vm.isFavorite" class="fa fa-heart-o" aria-hidden="true"></i>
 		</button>
 	</div>
 	
