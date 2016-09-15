@@ -53,8 +53,8 @@ angular.module( 'verloren', [
 ;
 
 
-appRunning.$inject = ["apiFactory", "$rootScope", "$state"];
-function appRunning(apiFactory, $rootScope, $state){
+appRunning.$inject = ["apiFactory", "$rootScope", "$state", "audioPlayer"];
+function appRunning(apiFactory, $rootScope, $state, audioPlayer){
   
   apiFactory.initApp();
 
@@ -65,5 +65,14 @@ function appRunning(apiFactory, $rootScope, $state){
       $state.go("login");
     }
   });
+
+  $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams, options){
+    
+    if ((fromState.name === "sounds.samples" || fromState.name === "profile") && audioPlayer.isPlaying()){
+        audioPlayer.stop();
+    }
+
+  });
+
 }
 

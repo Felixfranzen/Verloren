@@ -7,7 +7,8 @@ function audioPlayer(){
 
 	return {
 		play: playAudio,
-		stop: stopAudio
+		stop: stopAudio,
+		isPlaying: isPlaying
 	};
 
 	function playAudio(waveSurferObject){
@@ -30,5 +31,9 @@ function audioPlayer(){
 		if (currentAudio){
 			currentAudio.stop();
 		}
+	}
+
+	function isPlaying(){
+		return currentAudio && currentAudio.isPlaying();
 	}
 }
