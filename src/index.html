@@ -28,11 +28,19 @@
             <li></li>
             <li></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right" ng-if="loggedIn">
-            <li>
-              <span class="text-dark navbar-profile-link" ui-sref="profile">{{userEmail}}</span>
-              <button class="btn btn-default" ng-click="logout()">Sign out</button>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a ui-sref="home" ui-sref-active="active-route">Home</a></li>
+            <li><a ui-sref="sounds.samples({category: 'loop'})" ui-sref-active="{'active-route': 'sounds'}">Samples</a></li>
+            <li ng-if="loggedIn">
+              <a class="dropdown-toggle">
+                <span>{{userEmail}}<i class="fa fa-caret-down" aria-hidden="true"></i></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a ui-sref="profile" ui-sref-active="active-route">Profile</a></li>
+                <li><a ng-click="logout()">Sign out</a></li>
+              </ul>
             </li>
+            <li ng-if="!loggedIn"><a ui-sref="login" ui-sref-active="active-route">Get Started</a></li>
           </ul>
         </div><!--/.nav-collapse -->
     </nav>
