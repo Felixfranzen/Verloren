@@ -51,18 +51,26 @@ background-image: linear-gradient(0deg, #2F3A42 0%, #174978 100%);
 	padding: 15px 30px;
 	margin-top: 40px;
 	position: relative;
-	box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+	box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 	animation: fadeInLeft 800ms ease-out;
-	background-color: @pastel-green;
+	transition: transform 200ms ease-in-out;
+	background-color: @primary-blue;
 }
 
 .jumbotron-home .header button:hover {
-	background-color: @pastel-green;
+	transform: scale(1.05);
+	box-shadow: 0 15px 30px rgba(0,0,0,0.15)
 }
+
+.jumbotron-home .header button i {
+	margin-right: 10px;
+	font-size: 18px;
+}
+
 
 @keyframes fadeInRight {
 	from {
-		left: -40px;
+		left: -20px;
 		opacity: 0;
 	}
 
@@ -74,7 +82,7 @@ background-image: linear-gradient(0deg, #2F3A42 0%, #174978 100%);
 
 @keyframes fadeInLeft {
 	from {
-		left: 40px;
+		left: 20px;
 		opacity: 0;
 	}
 
