@@ -15,7 +15,8 @@ function apiFactory($firebaseArray, $firebaseObject){
 		getSampleFile: getSampleFile,
 		getSampleCategories: getSampleCategories,
 		getFiltersForCategory: getFiltersForCategory,
-		getFavoritesForUser: getFavoritesForUser
+		getFavoritesForUser: getFavoritesForUser,
+		getUserFavoritesForSample: getUserFavoritesForSample
 	};
 
 	function initApp(){
@@ -57,16 +58,18 @@ function apiFactory($firebaseArray, $firebaseObject){
 		return $firebaseArray(database.ref("samples").orderByChild("category").equalTo(category));
 	}
 
+	function getUserFavoritesForSample(sampleId){
+		return $firebaseObject(database.ref("samples/" + sampleId + "/favorites"));
+	}
+
 	function getSampleFile(category, id){
 		return storage.ref().child("samples/" + category + "/" + id).getDownloadURL();
 	}
 	
-	//TODO: Add to sounds.js
 	function getSampleCategories(){
 		return $firebaseArray(database.ref("categories/"));
 	}
 
-	//TODO: Add to sounds.js
 	function getFiltersForCategory(category){
 		return $firebaseObject(database.ref("filters/" + category));
 	}

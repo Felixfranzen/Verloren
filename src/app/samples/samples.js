@@ -32,14 +32,27 @@ function samplesController(apiFactory, $stateParams, currentAuth, $firebaseObjec
 	vm.filterSamples = filterSamples;
 	vm.toggleFavorite = toggleFavorite;
 	vm.isFavorite = isFavorite;
+	vm.numOfFavorites = numOfFavorites;
 
 	function toggleFavorite(id){
 		vm.favorites[id] ? vm.favorites[id] = null : vm.favorites[id] = true;
 		vm.favorites.$save();
+
+		var userRef = apiFactory.getUserFavoritesForSample(id);
+		userRef.$loaded(function(users){
+			users[currentAuth.uid] ? users[currentAuth.uid] = null : users[currentAuth.uid] = true;
+			userRef.$save();
+		});
 	}
 
 	function isFavorite(id){
 		return vm.favorites[id];
+	}
+
+	function numOfFavorites(fav){
+		if (fav){
+			return Object.keys(fav).length;
+		}
 	}
 
 	function filterSamples(sample){

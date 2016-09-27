@@ -10,7 +10,8 @@ function sample(){
 		scope: {
 			content: "=",
 			toggleFavorite: "=",
-			isFavorite: "="
+			isFavorite: "=",
+			favoriteCount: "="
 		},
 		controller: sampleController,
 		controllerAs: "vm",
@@ -20,7 +21,6 @@ function sample(){
 
 	function sampleController($element, apiFactory, $scope, audioPlayer){
 		var vm = this;
-
 		var wavesurfer = WaveSurfer.create({
 			container: $element.children()[0].children[2],
 			waveColor: "#8FDBCF",
