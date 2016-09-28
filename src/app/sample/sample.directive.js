@@ -11,7 +11,6 @@ function sample(){
 			content: "=",
 			toggleFavorite: "=",
 			isFavorite: "=",
-			favoriteCount: "="
 		},
 		controller: sampleController,
 		controllerAs: "vm",
@@ -31,8 +30,10 @@ function sample(){
 		vm.ready = false;
 		vm.playing = false;
 		vm.downloadLink = "";
+
 		vm.play = playsample;
 		vm.toggle = toggle;
+		vm.favoriteCount = favoriteCount;
 
 		apiFactory.getSampleFile(vm.content.category, vm.content.url).then(function(url){
 			wavesurfer.load(url);
@@ -73,6 +74,14 @@ function sample(){
 
 		function toggle(){
 			vm.toggleFavorite(vm.content.$id);
+		}
+
+		function favoriteCount(){
+			if (vm.content.favorites){
+				return Object.keys(vm.content.favorites).length;
+			}
+
+			return 0;
 		}
 
 

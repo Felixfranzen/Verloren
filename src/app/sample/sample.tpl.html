@@ -28,7 +28,7 @@
 		<button class="btn btn-download btn-audiobin" ng-click="vm.toggle()" ng-class="{'favorite': vm.isFavorite}">
 			<i ng-if="vm.isFavorite" class="fa fa-heart" aria-hidden="true"></i>
 			<i ng-if="!vm.isFavorite" class="fa fa-heart-o" aria-hidden="true"></i>
-			{{vm.favoriteCount || 0}}
+			{{vm.favoriteCount()}}
 		</button>
 	</div>
 	
