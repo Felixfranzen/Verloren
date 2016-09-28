@@ -32,7 +32,10 @@ function samplesController(apiFactory, $stateParams, currentAuth, $firebaseObjec
 	vm.filterSamples = filterSamples;
 	vm.toggleFavorite = toggleFavorite;
 	vm.isFavorite = isFavorite;
-	vm.numOfFavorites = numOfFavorites;
+	
+	vm.orderBy = "title";
+	vm.order = order;
+
 
 	function toggleFavorite(id){
 		if (vm.favorites[id]){
@@ -58,10 +61,25 @@ function samplesController(apiFactory, $stateParams, currentAuth, $firebaseObjec
 		return vm.favorites[id];
 	}
 
-	function numOfFavorites(fav){
-		if (fav){
-			return Object.keys(fav).length;
+	function order(sample){
+		switch(vm.orderBy){
+			case "favorites":
+				vm.reverse = true;
+				return numOfFavorites(sample);
+
+			case "title":
+				vm.reverse = false;
+				return sample.title;
 		}
+	}
+
+	//Order helpers
+	function numOfFavorites(sample){
+		if (sample.favorites){
+			return Object.keys(sample.favorites).length;
+		}
+
+		return -1;
 	}
 
 	function filterSamples(sample){
