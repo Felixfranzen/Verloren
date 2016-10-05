@@ -10,8 +10,8 @@
 			<h1>{{vm.content.title}}</h1>
 			<p>
 				<a>
-					{{vm.content.pack}}
-					<i class="fa fa-arrow-circle-o-right"></i>
+					<!--{{vm.content.pack}}
+					<i class="fa fa-arrow-circle-o-right"></i>-->
 				</a>
 			</p>
 		</div>
@@ -35,16 +35,14 @@
 	<!-- waveform -->
 	<div class="col-md-12 waveform-wrapper" ng-class="{'interactive': vm.ready}">
 		<!--$element selects this div and populates it with the wavesurfer waveform-->
-		<!--<ng-wavesurfer url="vm.url"></ng-wavesurfer>-->
-		<!--<div id="waveform"></div>-->
 		<div class="waveform-spinner" ng-if="!vm.ready">
 			<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
 		</div>
 	</div>
 
 	<!-- link to profile -->
-	<div class="col-md-8 col-sm-8 col-xs-12 ">
-		<!--image goes here with ng-src-->
+	<!--<div class="col-md-8 col-sm-8 col-xs-12 ">
+		
 		<img src="https://placeholdit.imgix.net/~text?txtsize=23&bg=ffffff&txtclr=000000&txt=250%C3%97250&w=250&h=250" width="40px" height="100%" style="display: inline-block; margin:0; padding:0; float: left;">
 
 		<div class="profile">
@@ -56,7 +54,7 @@
 				<i class="fa fa-arrow-circle-o-right"></i>
 			</p>
 		</div>
-	</div>
+	</div>-->
 	
 	<!-- bitrate/size/format etc-->
 	<div class="col-md-4 col-sm-4 col-xs-12 sample-info">

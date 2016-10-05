@@ -33,6 +33,19 @@ function profileController(apiFactory, currentAuth, authFactory){
 	function toggleFavorite(id){
 		vm.favorites[id] = null;
 		vm.favorites.$save();
+
+		var userRef = apiFactory.getUserFavoritesForSample(id);
+		userRef.$loaded(function(users){
+			users[currentAuth.uid] = null;
+			userRef.$save();
+		});
+
+		vm.samples.map(function(sample){
+			if (sample.$id === id){
+				vm.samples.splice(vm.samples.indexOf(sample),1);
+				return;
+			}
+		});
 	}
 
 }
