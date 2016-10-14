@@ -22,13 +22,13 @@ angular.module( 'verloren', [
 })
 
 .run(appRunning)
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location, authFactory, $state ) {
+.controller( 'AppCtrl', function AppCtrl ( $scope, $location, authFactory, audioPlayer, $state ) {
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     if ( angular.isDefined( toState.data.pageTitle ) ) {
       $scope.pageTitle = toState.data.pageTitle + ' | Verloren' ;
     }
   });
-  
+
   $scope.loggedIn = false;
   $scope.userEmail = "";
 
@@ -47,6 +47,21 @@ angular.module( 'verloren', [
         $scope.loggedIn = false;
         authFactory.logout();
     };
+
+  $scope.play = function(){
+    console.log("play");
+    audioPlayer.playCurrent();
+
+  };
+
+  $scope.pause = function(){
+    console.log("pause");
+    audioPlayer.pauseCurrent();
+  };
+
+
+
+
 })
 
 ;
@@ -54,7 +69,7 @@ angular.module( 'verloren', [
 
 appRunning.$inject = ["apiFactory", "$rootScope", "$state", "audioPlayer"];
 function appRunning(apiFactory, $rootScope, $state, audioPlayer){
-  
+
   apiFactory.initApp();
 
   $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
@@ -66,7 +81,7 @@ function appRunning(apiFactory, $rootScope, $state, audioPlayer){
   });
 
   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams, options){
-    
+
     if ((fromState.name === "sounds.samples" || fromState.name === "profile") && audioPlayer.isPlaying()){
         audioPlayer.stop();
     }
