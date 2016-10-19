@@ -40,9 +40,9 @@ function profileController(apiFactory, currentAuth, authFactory){
 			userRef.$save();
 		});
 
-		vm.samples.map(function(sample){
+		vm.samples.forEach(function(sample, index){
 			if (sample.$id === id){
-				vm.samples.splice(vm.samples.indexOf(sample),1);
+				vm.samples.splice(index,1);
 				return;
 			}
 		});
