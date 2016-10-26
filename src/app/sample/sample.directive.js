@@ -68,7 +68,11 @@ function sample(){
 		//functions
 		function playsample(){
 			if(wavesurfer && vm.ready){
-				audioPlayer.play(wavesurfer);
+				var sample = {
+					audio: wavesurfer,
+					title: vm.content.title
+				};
+				audioPlayer.play(sample);
 			}
 		}
 

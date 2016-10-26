@@ -3,37 +3,53 @@ angular.module("verloren.audioPlayer", [])
 
 function audioPlayer(){
 
-	var currentAudio;
+	var current;
 
 	return {
 		play: playAudio,
 		stop: stopAudio,
-		isPlaying: isPlaying
+		playPauseCurrent: playPauseCurrent,
+		isPlaying: isPlaying,
+		getCurrentTitle: getCurrentTitle
 	};
 
-	function playAudio(waveSurferObject){
-		if (currentAudio){
-			if (currentAudio != waveSurferObject && currentAudio.isPlaying()){
-				currentAudio.pause();
+	function playAudio(newSample){
+		if (current){
+			if (current.audio != newSample.audio && current.audio.isPlaying()){
+				current.audio.pause();
 			}
 		}
 
-		if (waveSurferObject.isPlaying()){
-			waveSurferObject.pause();
+		if (newSample.audio.isPlaying()){
+			newSample.audio.pause();
 		} else {
-			waveSurferObject.play();
+			newSample.audio.play();
 		}
 		
-		currentAudio = waveSurferObject;
+		current = newSample;
 	}
 
 	function stopAudio(){
-		if (currentAudio){
-			currentAudio.stop();
+		if (current && current.audio){
+			current.audio.stop();
+		}
+	}
+
+	function playPauseCurrent(){
+		if (current && current.audio){
+			current.audio.playPause();
 		}
 	}
 
 	function isPlaying(){
-		return currentAudio && currentAudio.isPlaying();
+		if (current && current.audio){
+			return current.audio.isPlaying();
+		} else {
+			return false;
+		}
+	}
+
+	function getCurrentTitle(){
+		return current && current.title;
 	}
 }

@@ -22,12 +22,14 @@ angular.module( 'verloren', [
 })
 
 .run(appRunning)
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location, authFactory, $state ) {
+.controller( 'AppCtrl', function AppCtrl ( $scope, $location, authFactory, $state, audioPlayer ) {
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     if ( angular.isDefined( toState.data.pageTitle ) ) {
       $scope.pageTitle = toState.data.pageTitle + ' | Verloren' ;
     }
   });
+
+  $scope.audioPlayer = audioPlayer;
   
   $scope.loggedIn = false;
   $scope.userEmail = "";
