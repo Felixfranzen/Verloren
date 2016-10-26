@@ -1,6 +1,27 @@
 <!--filter sidebar-->
     <div class="sidebar-right-wrapper">
       <div class="sidebar-right-content">
+		
+		<div class="sample-order filter-item">
+          <h5>ORDER BY</h5>
+          <label class="btn btn-primary">
+          	<input type="radio" name="order-by" value="title" ng-model="vm.orderBy" checked>Title
+		  </label>
+
+          <label class="btn btn-primary">
+          	<input type="radio" name="order-by" value="format" ng-model="vm.orderBy">Format
+          </label>
+
+          <label class="btn btn-primary">
+          	<input type="radio" name="order-by" value="favorites" ng-model="vm.orderBy">Favorites
+          </label>
+
+          <label class="btn btn-primary">
+          	<input type="radio" name="order-by" value="size" ng-model="vm.orderBy">Size
+          </label>
+
+        </div>
+
         <div class="sample-tags filter-item">
           <h5>TAGS</h5>
           <filter-buttons active-filters="vm.activeTags" filters="vm.filters.tags" button-model="vm.checkboxes"></filter-buttons>
