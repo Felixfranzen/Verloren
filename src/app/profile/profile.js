@@ -23,7 +23,12 @@ profileController.$inject = ["apiFactory","currentAuth", "authFactory"];
 function profileController(apiFactory, currentAuth, authFactory){
 	var vm = this;
 	apiFactory.getFavoriteSamples(currentAuth.uid, function(samples){
-		vm.samples = samples;
+		if (samples.length) {
+			vm.samples = samples;
+		}
+		else {
+			vm.showError = "No favorites yet";
+		}
 	});
 
 	vm.favorites = apiFactory.getFavoritesForUser(currentAuth.uid);

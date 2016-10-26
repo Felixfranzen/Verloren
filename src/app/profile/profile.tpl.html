@@ -1,6 +1,6 @@
 <div class="row">
 <div class="col-md-1"></div> <!--Spacing-->
-	
+
 
 	<div class="col-md-10">
 		<div class="col-md-12 favorite-title">
@@ -8,10 +8,15 @@
 			<h5></h5>
 		</div>
 		<div class="col-md-12">
+			<div class="row" ng-if="vm.showError">
+				<div class="col-md-12">
+					<h5>{{vm.showError}}</h5>
+				</div>
+			</div>
 			<div class="row" ng-repeat="sample in vm.samples" ng-class-odd="'sample-background'" ng-class-even="'odd-background'">
 				<div class="col-md-12">
 					<sample content="sample" toggle-favorite="vm.toggleFavorite" is-favorite="true"></sample>
-				</div>	
+				</div>
 			</div>
 		</div>
 
