@@ -216,6 +216,20 @@ hr {
   color: @primary-blue !important;
 }
 
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + span:before {
+  font-family: "FontAwesome";
+  content: "\f1db";
+  margin-right: 5px;
+  opacity: 0.75;
+}
+input[type="radio"]:checked + span:before {
+  content: "\f058";
+  opacity: 1;
+}
 
 /**
  * Footer
