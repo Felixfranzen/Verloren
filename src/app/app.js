@@ -14,7 +14,8 @@ angular.module( 'verloren', [
   'verloren.auth',
   'verloren.login',
   'verloren.signup',
-  'verloren.profile'
+  'verloren.profile',
+  'verloren.upload'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {

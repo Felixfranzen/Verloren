@@ -1,0 +1,12 @@
+<div ngf-drop 
+	ngf-select 
+	ng-model="vm.audioFile"
+	ngf-drag-over-class="dragover" 
+	ngf-multiple="false" 
+	ngf-allow-dir="true"
+	accept="audio/*" 
+	ngf-max-size="2MB"
+	ngf-pattern="'.mp3,.wav'">
+		<button class="btn btn-primary">Add file</button>
+		<div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+</div>
