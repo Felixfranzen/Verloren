@@ -1,12 +1,41 @@
-<div ngf-drop 
-	ngf-select 
-	ng-model="vm.audioFile"
-	ngf-drag-over-class="dragover" 
-	ngf-multiple="false" 
-	ngf-allow-dir="true"
-	accept="audio/*" 
-	ngf-max-size="2MB"
-	ngf-pattern="'.mp3,.wav'">
-		<button class="btn btn-primary">Add file</button>
-		<div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+<div class="row">
+	<div class="col-md-1"></div> <!--Spacing-->
+	<div class="col-md-10">
+		<div class="col-md-12 favorite-title">
+			<h1><i class="fa fa-cloud-upload profile-heart" aria-hidden="true"></i>Upload</h1>
+		</div>
+		<div class="col col12">
+			<input class="form-control" type="text" ng-model="vm.sampleData.title" placeholder="title">
+			
+			<label for="sel1">Category:</label>
+			<select class="form-control" id="sel1" ng-model="vm.sampleData.category">
+				<option value="kick">Kick</option>
+				<option value="loop">Loop</option>
+				<option value="snare">Snare</option>
+				<option value="clap">Clap</option>
+				<option value="cymbal">Cymbal</option>
+				<option value="tom">Tom</option>
+				<option value="noise">Noise</option>
+				<option value="hihat">Hi hat</option>
+			</select>
+		</div>
+		<div class="col-md-12">
+			<div ngf-drop 
+				ngf-select 
+				ng-model="vm.audioFile"
+				ngf-drag-over-class="dragover" 
+				ngf-multiple="false" 
+				ngf-allow-dir="true"
+				accept="audio/*" 
+				ngf-max-size="2MB"
+				ngf-pattern="'.mp3,.wav'">
+					<button class="btn btn-primary">Add file</button>
+					<div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+			</div>			
+		</div>
+		<div class="col-md-12">
+			<button class="btn btn-primary" ng-if="vm.audioFile" ng-click="vm.upload()">UPLOAD</button>
+		</div>
+	</div>
+	<div class="col-md-1"></div> <!--Spacing-->
 </div>

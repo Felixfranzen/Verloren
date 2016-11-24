@@ -35,13 +35,11 @@ function sample(){
 		vm.toggle = toggle;
 		vm.favoriteCount = favoriteCount;
 
-		apiFactory.getSampleFile(vm.content.category, vm.content.url).then(function(url){
-			wavesurfer.load(url);
-			wavesurfer.on('ready', function () {
-				$scope.$evalAsync(function(){
-					vm.ready = true;
-					vm.downloadLink = url;
-				});
+		wavesurfer.load(vm.content.url);
+		wavesurfer.on('ready', function () {
+			$scope.$evalAsync(function(){
+				vm.ready = true;
+				vm.downloadLink = vm.content.url;
 			});
 		});
 

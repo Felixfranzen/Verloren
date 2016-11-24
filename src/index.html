@@ -32,7 +32,8 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a ui-sref="home" ui-sref-active="active-route">Home</a></li>
-            <li><a ui-sref="sounds.samples({category: 'loop'})" ui-sref-active="{'active-route': 'sounds'}">Samples</a></li>
+            <li ng-if="!loggedIn"><a ui-sref="login" ui-sref-active="active-route">Get Started</a></li>
+            <li ng-if="loggedIn"><a ui-sref="sounds.samples({category: 'loop'})" ui-sref-active="{'active-route': 'sounds'}">Samples</a></li>
             <li ng-if="loggedIn"><a ui-sref="upload" ui-sref-active="active-route">Upload</a></li>
             <li ng-if="loggedIn">
               <a class="dropdown-toggle">
@@ -43,7 +44,6 @@
                 <li><a ng-click="logout()">Sign out</a></li>
               </ul>
             </li>
-            <li ng-if="!loggedIn"><a ui-sref="login" ui-sref-active="active-route">Get Started</a></li>
           </ul>
         </div><!--/.nav-collapse -->
     </nav>
