@@ -1,0 +1,57 @@
+.upload-dropzone {
+	border-radius: 3px;
+	border: 1px dashed rgba(255,255,255,0.2);
+	padding: 50px 20px;
+	display: flex;
+	justify-content: center;
+}
+
+.upload-description {
+	padding: 20px;
+	color: rgba(255,255,255,0.5);
+	line-height: 1.75em;
+	text-align: center;
+	p {
+		display: inline-block;
+		margin-right: 20px;
+		font-weight: bold;
+	}
+
+	span {
+		color: @white;
+		font-weight: normal;
+	}
+}
+
+.sample-file-info {
+	background-color: rgba(255,255,255,0.1);
+	border-radius: 3px;
+
+	.info-container {
+		padding: 3%;
+	}
+
+	.top {
+		background-color: #000;
+		position: relative;
+
+		h2 {
+			margin-top: 0;
+			margin-bottom: 20px;
+		}
+
+		i.clear {
+			color: rgba(255,255,255,0.5);
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			padding: 10px;
+			cursor: pointer;
+			font-size: 18px;
+		}
+	}
+}
+
+.sample-file-info .progress-bar {
+	margin-top: 20px;
+}
