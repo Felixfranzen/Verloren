@@ -16,7 +16,9 @@ function apiFactory($firebaseArray, $firebaseObject){
 		getSampleCategories: getSampleCategories,
 		getFiltersForCategory: getFiltersForCategory,
 		getFavoritesForUser: getFavoritesForUser,
-		getUserFavoritesForSample: getUserFavoritesForSample
+		getUserFavoritesForSample: getUserFavoritesForSample,
+		sampleDataReference: sampleDataReference,
+		sampleStorageReference: sampleStorageReference
 	};
 
 	function initApp(){
@@ -76,5 +78,13 @@ function apiFactory($firebaseArray, $firebaseObject){
 
 	function getFavoritesForUser(id){
 		return $firebaseObject(database.ref("users/" + id + "/favorites"));
+	}
+
+	function sampleDataReference(){
+		return $firebaseArray(database.ref("samples"));
+	}
+
+	function sampleStorageReference(id){
+		return storage.ref().child("samples/" + id);
 	}
 }

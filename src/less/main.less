@@ -187,13 +187,32 @@ hr {
   color: #1A2126;
 }
 
+.progress-bar {
+  position: relative;
+  width: 100%;
+  height: 15px;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar .progress {
+  position: absolute;
+  height: 100%;
+  background-color: @pastel-green;
+  width: 0%;
+  top: 0;
+  left: 0;
+  transition: all 750ms ease-in;
+}
+
 /**
  * Navigation
  */
 
 .navbar {
   margin-top: 20px;
-  
+
   small {
     font-size: 60%;
   }
@@ -269,7 +288,7 @@ input[type="radio"]:checked + span:before {
 
 /**
  * Now that all app-wide styles have been applied, we can load the styles for
- * all the submodules and components we are using. 
+ * all the submodules and components we are using.
  *
  * TODO: In a later version of this boilerplate, I'd like to automate this.
  */
@@ -279,6 +298,7 @@ input[type="radio"]:checked + span:before {
 @import '../app/sample/sample.less';
 @import '../app/login/login.less';
 @import '../app/profile/profile.less';
+@import '../app/upload/upload.less';
 @import 'common/navbar.less';
 @import 'common/buttons.less';
 @import 'common/sidebar.less';
