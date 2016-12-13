@@ -1,4 +1,4 @@
-angular.module("verloren.upload",['ui.router', 'verloren.api' ,'verloren.auth', 'ngFileUpload'])
+angular.module("verloren.upload",['ui.router', 'verloren.api' ,'verloren.auth', 'ngFileUpload', 'verloren.modals'])
 
 .config(function config($stateProvider){
 	$stateProvider.state("upload", {
@@ -19,13 +19,14 @@ angular.module("verloren.upload",['ui.router', 'verloren.api' ,'verloren.auth', 
 })
 
 .controller("uploadController", uploadController);
-uploadController.$inject = ["apiFactory", "authFactory", "$state", "$scope", "currentAuth"];
-function uploadController(apiFactory, authFactory, $state, $scope, currentAuth){
+uploadController.$inject = ["apiFactory", "authFactory", "$state", "$scope", "currentAuth", "modals"];
+function uploadController(apiFactory, authFactory, $state, $scope, currentAuth, modals){
 	var vm = this;
 	var db = apiFactory.sampleDataReference();
 	vm.sampleData = {};
 	vm.upload = upload;
 	vm.clear = clear;
+	vm.openTerms = openTerms;
 
 	function upload(){
 		if (!vm.audioFile){
@@ -78,6 +79,10 @@ function uploadController(apiFactory, authFactory, $state, $scope, currentAuth){
 		vm.audioFile = "";
 		vm.uploadProgress = 0;
 		vm.sampleData = {};
+	}
+
+	function openTerms(){
+		modals.termsOfUse();
 	}
 
 	$scope.$watch('vm.audioFile', function(){
