@@ -1,8 +1,7 @@
 <div class="row">
-	<div class="col-md-1"></div> <!--Spacing-->
-	<div class="col-md-10">
-		<div class="col-md-12 favorite-title">
-			<h1><i class="fa fa-cloud-upload profile-heart" aria-hidden="true"></i>Upload</h1>
+	<div class="col-md-12">
+		<div class="col-md-12 page-title">
+			<h1><i class="fa fa-cloud-upload page-icon" aria-hidden="true"></i>Upload</h1>
 		</div>
 		<div class="col-md-12" ng-hide="vm.audioFile">
 			<div class="upload-dropzone"
@@ -21,7 +20,7 @@
 			<div class="upload-description">
 				<p>Max size: <span>20MB</span></p>
 				<p>Formats: <span>mp3/wav</span></p>
-
+				<h5>When uploading to Verloren, you agree to the <a ng-click="vm.openTerms()">terms of use</a></h5>
 			</div>
 		</div>
 		<div class="col-md-12 sample-file-info" ng-if="vm.audioFile">
@@ -82,5 +81,4 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-1"></div> <!--Spacing-->
 </div>

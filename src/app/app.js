@@ -15,7 +15,8 @@ angular.module( 'verloren', [
   'verloren.login',
   'verloren.signup',
   'verloren.profile',
-  'verloren.upload'
+  'verloren.upload',
+  'verloren.modals'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
@@ -29,7 +30,7 @@ angular.module( 'verloren', [
       $scope.pageTitle = toState.data.pageTitle + ' | Verloren' ;
     }
   });
-  
+
   $scope.loggedIn = false;
   $scope.userEmail = "";
 
@@ -55,7 +56,7 @@ angular.module( 'verloren', [
 
 appRunning.$inject = ["apiFactory", "$rootScope", "$state", "audioPlayer"];
 function appRunning(apiFactory, $rootScope, $state, audioPlayer){
-  
+
   apiFactory.initApp();
 
   $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
@@ -67,7 +68,7 @@ function appRunning(apiFactory, $rootScope, $state, audioPlayer){
   });
 
   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams, options){
-    
+
     if ((fromState.name === "sounds.samples" || fromState.name === "profile") && audioPlayer.isPlaying()){
         audioPlayer.stop();
     }
