@@ -2,6 +2,12 @@
 	font-size: 15px;
 }
 
+.btn:hover{
+	transform: translateY(-1px);
+	box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+	transition: transform .1s ease-in-out;
+}
+
 .btn.huge,
 .btn.huge:active,
 .btn.huge:hover,
@@ -50,15 +56,22 @@
 }
 
 .btn-instrument {
-	height: 70px;
-	width: 70px;
+	height: 60px;
+	width: 60px;
 	padding: 0;
 	text-align: center;
 	border-radius: 8px;
 	opacity: 0.5;
+	font-size: 13px
 }
 
-.btn-instrument:hover,
+.btn-instrument:hover{
+	color: @white;
+	transform: translateY(-1px);
+	box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+	transition: transform .1s ease-in-out;
+}
+
 .btn-instrument:focus,
 .btn-instrument:active, {
 	opacity: 0.8;
