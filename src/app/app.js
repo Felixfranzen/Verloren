@@ -20,7 +20,7 @@ angular.module( 'verloren', [
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/samples/loop' );
+  $urlRouterProvider.otherwise( 'home' );
 })
 
 .run(appRunning)
