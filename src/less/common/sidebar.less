@@ -1,28 +1,31 @@
 .sidebar-left-wrapper {
 	background-color: @sidebar-left-background;
-	width: 110px;
+	width: 80px;
 	z-index: 9999;
 	position: fixed;
-	top:70px;
+	top:0px;
 	left:0;
 	height:100vh;
-	background-color: @dark-blue;
+	background-color: @sidebar-left-background;
 	overflow-y: scroll;
 }
 
 .sidebar-right-wrapper {
 	background-color: @sidebar-right-background;
-	width: 270px;
+	width: 260px;
 	position: fixed;
 	top:70px;
-	left: 110px;
+	left: 80px;
 	height: 100vh;
 }
 
 .sidebar-left-content {
-	padding: 20px 5px;
+	padding: 10px 5px;
 }
 
 .sidebar-right-content {
-	padding: 20px;
+}
+
+.sidebar-right-content h5 {
+	font-size: 11px;
 }
