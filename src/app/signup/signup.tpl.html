@@ -1,36 +1,37 @@
 <div class="login-wrapper">
 <h1>Sign up!</h1>
 	<form name="form" class="login-form" ng-submit="form.$valid && vm.submit()">
-			
+
 		<label>
 			<span><i class="fa fa-envelope" aria-hidden="true"></i>Email</span>
-			<input type="email" 
-					class="form-control" 
-					ng-required="true" 
+			<input type="email"
+					autofocus="autofocus"
+					class="form-control"
+					ng-required="true"
 					ng-model="vm.email"
 					/>
 		</label>
 
 		<label>
 			<span><i class="fa fa-key" aria-hidden="true"></i>Password</span>
-			<input type="password" 
-					class="form-control" 
-					ng-required="true" 
+			<input type="password"
+					class="form-control"
+					ng-required="true"
 					ng-model="vm.password"
 			/>
 		</label>
 
 		<label>
 			<span><i class="fa fa-key" aria-hidden="true"></i>Repeat password</span>
-			<input type="password" 
-					class="form-control" 
-					ng-required="true" 
+			<input type="password"
+					class="form-control"
+					ng-required="true"
 					ng-model="vm.repeatPassword"
 			/>
 		</label>
-	
+
 		<button type="submit" class="btn btn-secondary" ng-disabled="$invalid">Sign up</button>
-	</form>	
+	</form>
 
 	<p class="error-message">{{vm.errorMessage}}</p>
 

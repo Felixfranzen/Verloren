@@ -3,10 +3,11 @@
 	<form name="form" class="login-form" ng-submit="form.$valid && vm.submit()">
 		<label>
 			<span><i class="fa fa-envelope" aria-hidden="true"></i>Email</span>
-			<input type="email" 
-					class="form-control" 
-					placeholder="example@example.com" 
-					ng-required="true" 
+			<input type="email"
+					autofocus="autofocus"
+					class="form-control"
+					placeholder="example@example.com"
+					ng-required="true"
 					ng-model="vm.email"
 					ng-class="{'invalid': vm.emailError || $invalid}"/>
 			<span class="login-error-message" ng-show="vm.emailError">{{vm.emailError}}</span>
@@ -14,10 +15,10 @@
 
 		<label>
 			<span><i class="fa fa-key" aria-hidden="true"></i>Password</span>
-			<input type="password" 
-					class="form-control" 
-					placeholder="password" 
-					ng-required="true" 
+			<input type="password"
+					class="form-control"
+					placeholder="password"
+					ng-required="true"
 					ng-model="vm.password"
 					ng-class="{'invalid': vm.passwordError || $invalid}"/>
 
@@ -25,7 +26,7 @@
 		</label>
 
 		<button type="submit" class="btn btn-secondary" ng-disabled="$invalid">Log in</button>
-	</form>	
+	</form>
 
 	<div class="sign-up-link">
 		<a ui-sref="signup">No account? <strong>Sign Up</strong></a>

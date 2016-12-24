@@ -79,8 +79,7 @@
 }
 
 .btn-primary,
-.btn-primary:focus,
-.btn-primary:active {
+.btn-primary:focus, {
 	padding: 8px 16px;
 	margin-right: 10px;
 	margin-top: 10px;
@@ -90,6 +89,10 @@
 	color: white;
 }
 
+.btn-primary:active {
+	background-color: darken(@primary-blue-inactive, 1%) !important;
+}
+
 .btn-primary:hover {
 	background-color: lighten(@primary-blue-inactive, 5%);
 }
@@ -97,13 +100,10 @@
 	background-color: @primary-blue;
 }
 
-
-
-
 .btn-primary.active,
 .btn-primary.active:focus,
 .btn-primary.active:active {
-	background-color: @primary-blue;
+	background-color: @primary-blue !important;
 }
 
 .btn-default {
