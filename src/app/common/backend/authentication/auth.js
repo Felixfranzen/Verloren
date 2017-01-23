@@ -4,7 +4,7 @@ angular.module("verloren.auth", ['firebase'])
 authFactory.$inject = ["$firebaseAuth"];
 function authFactory($firebaseAuth){
 	var auth = $firebaseAuth();
-	
+
 	return {
 		signUp: signUp,
 		login: login,

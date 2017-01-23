@@ -1,4 +1,4 @@
-angular.module("verloren.sounds",['ui.router', 'verloren.api'])
+angular.module("verloren.sounds",['ui.router', 'verloren.api', 'verloren.utils'])
 
 .config(function config($stateProvider){
 	$stateProvider.state("sounds", {
@@ -20,8 +20,8 @@ angular.module("verloren.sounds",['ui.router', 'verloren.api'])
 })
 
 .controller("soundsController", soundsController);
-soundsController.$inject = ["apiFactory"];
-function soundsController(apiFactory){
+soundsController.$inject = ["apiFactory", "utils"];
+function soundsController(apiFactory, utils){
 	var vm = this;
 
 	var categories = apiFactory.getSampleCategories();
@@ -31,14 +31,5 @@ function soundsController(apiFactory){
 		});
 	});
 
-	vm.categoryClasses = categoryClasses;
-
-
-	function categoryClasses(index){
-		var classes = "";
-		var colors = ["green", "green", "greentwo", "light-blue", "dark-blue", "purpleone", "purpletwo", "purplethree"];
-		classes += colors[index % colors.length];
-		return classes;
-	}
-
+	vm.categoryClasses = utils.rainbow;
 }

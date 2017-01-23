@@ -1,4 +1,4 @@
-angular.module("verloren.upload",['ui.router', 'verloren.api' ,'verloren.auth', 'ngFileUpload', 'verloren.modals'])
+angular.module("verloren.upload",['ui.router', 'verloren.api' ,'verloren.auth', 'ngFileUpload', 'verloren.modals', 'verloren.utils'])
 
 .config(function config($stateProvider){
 	$stateProvider.state("upload", {
@@ -19,23 +19,41 @@ angular.module("verloren.upload",['ui.router', 'verloren.api' ,'verloren.auth', 
 })
 
 .controller("uploadController", uploadController);
-uploadController.$inject = ["apiFactory", "authFactory", "$state", "$scope", "currentAuth", "modals"];
-function uploadController(apiFactory, authFactory, $state, $scope, currentAuth, modals){
+uploadController.$inject = ["apiFactory", "authFactory", "$state", "$scope", "currentAuth", "modals", "utils"];
+function uploadController(apiFactory, authFactory, $state, $scope, currentAuth, modals, utils){
+
+	var STATES = {
+		"UPLOADING": "uploading",
+		"FINISHED": "finished"
+	};
+
 	var vm = this;
 	var db = apiFactory.sampleDataReference();
+
+	categories = apiFactory.getSampleCategories();
+	categories.$loaded(function(data){
+		vm.categories = data.map(function(elem){
+			return elem.$value;
+		});
+		vm.sampleData.category = vm.categories[0];
+	});
+
 	vm.sampleData = {};
 	vm.upload = upload;
 	vm.clear = clear;
 	vm.openTerms = openTerms;
+	vm.formatSize = utils.formatFileSize;
+	vm.categoryClass = utils.rainbow;
+	vm.states = STATES;
 
 	function upload(){
 		if (!vm.audioFile){
 			return;
 		}
 
-		var category = vm.sampleData.category || 'loop';
+		var category = vm.sampleData.category;
 		var format = "." + vm.audioFile.type.replace('audio/', '');
-		var size = parseInt(vm.audioFile.size, 10);
+		var size = utils.formatFileSize(vm.audioFile.size);
 		var title = vm.sampleData.title || vm.audioFile.name;
 		var uploader = currentAuth.displayName || currentAuth.email;
 
@@ -51,7 +69,7 @@ function uploadController(apiFactory, authFactory, $state, $scope, currentAuth, 
 			uploader: uploader,
 			url: ""
 		}).then(function(ref){
-			vm.uploadState = "uploading";
+			vm.uploadState = STATES.UPLOADING;
 			uploadTask = apiFactory.sampleStorageReference(ref.key).put(vm.audioFile);
 			uploadTask.on('state_changed', function(snapshot){
 				$scope.$evalAsync(function(){
@@ -62,7 +80,7 @@ function uploadController(apiFactory, authFactory, $state, $scope, currentAuth, 
 				//handle error
 
 			}, function() {
-				vm.uploadState = "finished";
+				vm.uploadState = STATES.FINISHED;
 				record = db.$getRecord(ref.key);
 				record.url = uploadTask.snapshot.downloadURL;
 				db.$save(record);
@@ -72,7 +90,7 @@ function uploadController(apiFactory, authFactory, $state, $scope, currentAuth, 
 	}
 
 	function clear(){
-		if (vm.uploadState === 'uploading'){
+		if (vm.uploadState === STATES.UPLOADING){
 			return;
 		}
 		vm.uploadState = "";
