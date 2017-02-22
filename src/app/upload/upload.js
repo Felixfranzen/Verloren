@@ -53,7 +53,7 @@ function uploadController(apiFactory, authFactory, $state, $scope, currentAuth, 
 
 		var category = vm.sampleData.category;
 		var format = "." + vm.audioFile.type.replace('audio/', '');
-		var size = utils.formatFileSize(vm.audioFile.size);
+		var size = vm.audioFile.size;
 		var title = vm.sampleData.title || vm.audioFile.name;
 		var uploader = currentAuth.displayName || currentAuth.email;
 

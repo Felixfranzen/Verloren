@@ -1,51 +1,61 @@
 <!--filter sidebar-->
-    <div class="sidebar-right-wrapper">
-      <div class="sidebar-right-content">
+<div class="sidebar-right-wrapper">
+	<div class="sidebar-right-content">
 
 		<div class="sample-order filter-item">
-          <h5>ORDER BY</h5>
-          <label class="btn btn-primary">
-          	<input type="radio" name="order-by" value="title" ng-model="vm.orderBy" checked><span>Title</span>
-		  </label>
+			<h5>SEARCH</h5>
+			<form class="input-search-group" ng-submit="vm.search()">
+				<input type="text" class="form-control" ng-model="vm.searchInput" placeholder="Search sample titles">
+				<button  type="submit" class="btn btn-primary static"><i class="fa fa-search" aria-hidden="true"></i></button>
+			</form>
+		</div>
 
-          <label class="btn btn-primary">
-          	<input type="radio" name="order-by" value="format" ng-model="vm.orderBy"><span>Format</span>
-          </label>
+		<hr>
 
-          <label class="btn btn-primary">
-          	<input type="radio" name="order-by" value="favorites" ng-model="vm.orderBy"><span>Favorites</span>
-          </label>
+		<div class="sample-order filter-item">
+			<h5>ORDER BY</h5>
+			<label class="btn btn-primary">
+				<input type="radio" name="order-by" value="title" ng-model="vm.orderBy" checked><span>Title</span>
+			</label>
 
-          <label class="btn btn-primary">
-          	<input type="radio" name="order-by" value="size" ng-model="vm.orderBy"><span>Size</span>
-          </label>
+			<label class="btn btn-primary">
+				<input type="radio" name="order-by" value="format" ng-model="vm.orderBy"><span>Format</span>
+			</label>
 
-        </div>
+			<label class="btn btn-primary">
+				<input type="radio" name="order-by" value="favorites" ng-model="vm.orderBy"><span>Favorites</span>
+			</label>
 
-        <hr>
+			<label class="btn btn-primary">
+				<input type="radio" name="order-by" value="size" ng-model="vm.orderBy"><span>Size</span>
+			</label>
 
-        <div class="sample-tags filter-item">
-          <h5>TAGS</h5>
-          <filter-buttons active-filters="vm.activeTags" filters="vm.filters.tags" button-model="vm.checkboxes"></filter-buttons>
-        </div>
+		</div>
 
-        <hr>
+		<hr>
 
-        <div class="sample-formats filter-item">
-          <h5>FORMATS</h5>
-          <filter-buttons active-filters="vm.activeFormats" filters="vm.filters.formats" button-model="vm.checkboxes"></filter-buttons>
-        </div>
+		<div class="sample-tags filter-item">
+			<h5>TAGS</h5>
+			<filter-buttons active-filters="vm.activeTags" filters="vm.filters.tags" button-model="vm.checkboxes"></filter-buttons>
+		</div>
 
-      </div>
-    </div>
+		<hr>
+
+		<div class="sample-formats filter-item">
+			<h5>FORMATS</h5>
+			<filter-buttons active-filters="vm.activeFormats" filters="vm.filters.formats" button-model="vm.checkboxes"></filter-buttons>
+		</div>
+
+	</div>
+</div>
 
 <!--Main Content-->
-		<div class="main-content-wrapper">
-			<div class="container-fluid">
-           	<div class="row" ng-repeat="sample in vm.samples | orderBy:vm.order" ng-show="vm.filterSamples(sample)">
-           		<div class="col-md-12" ng-class-odd="'odd-background'" ng-class-even="'sample-background'">
-                <sample content="sample" toggle-favorite="vm.toggleFavorite" is-favorite="vm.isFavorite(sample.$id)"></sample>
-              </div>
-           	</div>
-      </div>
-    </div>
+<div class="main-content-wrapper">
+	<div class="container-fluid">
+				<div class="row" ng-repeat="sample in vm.samples | orderBy:vm.order" ng-show="vm.filterSamples(sample)">
+					<div class="col-md-12" ng-class-odd="'odd-background'" ng-class-even="'sample-background'">
+						<sample content="sample" toggle-favorite="vm.toggleFavorite" is-favorite="vm.isFavorite(sample.$id)"></sample>
+					</div>
+				</div>
+	</div>
+</div>

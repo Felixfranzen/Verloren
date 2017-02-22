@@ -1,9 +1,9 @@
-angular.module("verloren.sample", ['verloren.api', 'verloren.audioPlayer'])
+angular.module("verloren.sample", ['verloren.api', 'verloren.audioPlayer', 'verloren.utils'])
 .directive("sample", sample);
 
 function sample(){
 
-	sampleController.$inject = ["$element", "apiFactory", "$scope", "audioPlayer"];
+	sampleController.$inject = ["$element", "apiFactory", "$scope", "audioPlayer", "utils"];
 
 	return {
 		restrict: "E",
@@ -18,7 +18,7 @@ function sample(){
 		bindToController: true
 	};
 
-	function sampleController($element, apiFactory, $scope, audioPlayer){
+	function sampleController($element, apiFactory, $scope, audioPlayer, utils){
 		var vm = this;
 		var wavesurfer = WaveSurfer.create({
 			container: $element.children()[0].children[2],
@@ -34,6 +34,7 @@ function sample(){
 		vm.play = playsample;
 		vm.toggle = toggle;
 		vm.favoriteCount = favoriteCount;
+		vm.formatSize = utils.formatFileSize;
 
 		wavesurfer.load(vm.content.url);
 		wavesurfer.on('ready', function () {

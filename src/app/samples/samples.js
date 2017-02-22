@@ -23,18 +23,36 @@ function samplesController(apiFactory, $stateParams, currentAuth, $firebaseObjec
 	var vm = this;
 	vm.category = $stateParams.category;
 	vm.samples = apiFactory.getSamplesFromCategory(vm.category);
-	vm.filters = apiFactory.getFiltersForCategory(vm.category);
+	vm.filters = {};
+
+	vm.samples.$loaded().then(function(){
+		console.log(vm.samples);
+		vm.filters.formats = vm.samples.reduce(function(formats, sample){
+			if (formats.indexOf(sample.format) === -1){
+				formats.push(sample.format);
+				return formats;
+			}
+		}, []);
+
+		vm.filters.tags = [];
+	});
+
 	vm.favorites = apiFactory.getFavoritesForUser(currentAuth.uid);
 
 	vm.activeTags = [];
 	vm.activeFormats = [];
 
-	vm.filterSamples = filterSamples;
+	vm.search = search;
 	vm.toggleFavorite = toggleFavorite;
 	vm.isFavorite = isFavorite;
-	
+	vm.filterSamples = filterSamples;
+
 	vm.orderBy = "title";
 	vm.order = order;
+
+	function search(){
+		vm.searchQuery = vm.searchInput;
+	}
 
 
 	function toggleFavorite(id){
@@ -42,8 +60,8 @@ function samplesController(apiFactory, $stateParams, currentAuth, $firebaseObjec
 			vm.favorites[id] = null;
 		} else {
 			vm.favorites[id] = true;
-		}		
-		
+		}
+
 		vm.favorites.$save();
 
 		var userRef = apiFactory.getUserFavoritesForSample(id);
@@ -61,20 +79,11 @@ function samplesController(apiFactory, $stateParams, currentAuth, $firebaseObjec
 		return vm.favorites[id];
 	}
 
-	function order(sample){
-		switch(vm.orderBy){
-			case "favorites":
-				return numOfFavorites(sample);
-			default:
-				return sample[vm.orderBy];
-		}
-	}
-
 	//Order helpers
 	function numOfFavorites(sample){
 		if (sample.favorites){
 			/*
-				orderBy sorts with ascending(?) order (smallest values first) if you don't pass reverse=true. 
+				orderBy sorts with ascending(?) order (smallest values first) if you don't pass reverse=true.
 				Since number of favorites is the only thing we wanna sort in descending order as of now, this
 				might be a better solution than to constantly track if we should reverse the order or not
 			*/
@@ -85,6 +94,14 @@ function samplesController(apiFactory, $stateParams, currentAuth, $firebaseObjec
 	}
 
 	function filterSamples(sample){
+
+		//Check that it matches the search string
+		if (vm.searchQuery && vm.searchQuery.length > 0){
+			if (sample.title.toLowerCase().indexOf(vm.searchQuery.toLowerCase()) === -1){
+				return false;
+			}
+		}
+
 		//check if the sample has all tags
 		for (var i = 0; i < vm.activeTags.length; i++){
 			if (sample.tags.indexOf(vm.activeTags[i]) === -1){
@@ -94,6 +111,15 @@ function samplesController(apiFactory, $stateParams, currentAuth, $firebaseObjec
 
 		//check if the sample has the right format
 		return vm.activeFormats.indexOf(sample.format) > -1 || vm.activeFormats.length === 0;
+	}
+
+	function order(sample){
+		switch(vm.orderBy){
+			case "favorites":
+				return numOfFavorites(sample);
+			default:
+				return sample[vm.orderBy];
+		}
 	}
 
 }

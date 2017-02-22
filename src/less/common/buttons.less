@@ -8,6 +8,10 @@
 	transition: transform .1s ease-in-out;
 }
 
+.btn.static:hover {
+	transform: translateY(0);
+}
+
 .btn.huge,
 .btn.huge:active,
 .btn.huge:hover,
@@ -132,6 +136,21 @@
 .btn-placeholder:nth-child(3){
 	animation-delay: 600ms;
 }
+
+.input-search-group {
+	display: flex;
+	align-items: center;
+	.form-control {
+		margin-top: 0;
+		border-radius: 2px 0 0 2px;
+	}
+
+	button, button:focus, button:active, {
+		margin: 0;
+		border-radius: 0 4px 4px 0;
+	}
+}
+
 
 @keyframes fade-roll{
 	from {

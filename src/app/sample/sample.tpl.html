@@ -2,7 +2,7 @@
 	<!-- sample title -->
 	<div class="col-md-8 sample-title">
 		<div class="play-button">
-			
+
 			<i class="fa" ng-click="vm.play()" ng-class="{'fa-play-circle-o': !vm.playing, 'fa-pause-circle-o': vm.playing}"></i>
 
 		</div>
@@ -31,7 +31,7 @@
 			{{vm.favoriteCount()}}
 		</button>
 	</div>
-	
+
 	<!-- waveform -->
 	<div class="col-md-12 waveform-wrapper" ng-class="{'interactive': vm.ready}">
 		<!--$element selects this div and populates it with the wavesurfer waveform-->
@@ -42,7 +42,7 @@
 
 	<!-- link to profile -->
 	<div class="col-md-8 col-sm-8 col-xs-12 ">
-		
+
 		<!--<img src="https://placeholdit.imgix.net/~text?txtsize=23&bg=ffffff&txtclr=000000&txt=250%C3%97250&w=250&h=250" width="40px" height="100%" style="display: inline-block; margin:0; padding:0; float: left;">-->
 
 		<div class="profile">
@@ -55,7 +55,7 @@
 			</p>
 		</div>
 	</div>
-	
+
 	<!-- bitrate/size/format etc-->
 	<div class="col-md-4 col-sm-4 col-xs-12 sample-info">
 		<ul>
@@ -65,7 +65,7 @@
 			</li>
 			<li>
 				<p class="sample-info-title">SIZE</p>
-				<p class="sample-info-content">{{vm.content.size}}</p>
+				<p class="sample-info-content">{{vm.formatSize(vm.content.size)}}</p>
 			</li>
 			<li>
 				<p class="sample-info-title">FORMAT</p>
