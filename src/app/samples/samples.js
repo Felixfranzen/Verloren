@@ -22,19 +22,22 @@ samplesController.$inject = ["apiFactory", "$stateParams", "currentAuth", "$fire
 function samplesController(apiFactory, $stateParams, currentAuth, $firebaseObject){
 	var vm = this;
 	vm.category = $stateParams.category;
-	vm.samples = apiFactory.getSamplesFromCategory(vm.category);
 	vm.filters = {};
 
+	vm.samples = apiFactory.getSamplesFromCategory(vm.category);
 	vm.samples.$loaded().then(function(){
-		console.log(vm.samples);
 		vm.filters.formats = vm.samples.reduce(function(formats, sample){
 			if (formats.indexOf(sample.format) === -1){
 				formats.push(sample.format);
 				return formats;
 			}
+
+			return formats;
+
 		}, []);
 
 		vm.filters.tags = [];
+
 	});
 
 	vm.favorites = apiFactory.getFavoritesForUser(currentAuth.uid);

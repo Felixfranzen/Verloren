@@ -43,11 +43,11 @@
 				<div class="row info-container">
 					<div class="col-md-12" ng-hide="vm.uploadState === vm.states.UPLOADING">
 						<label for="title">Title</label>
-						<input id="title" class="form-control" type="text" ng-model="vm.sampleData.title" placeholder="title">
+						<input id="title" class="form-control" type="text" ng-model="vm.sampleData.title" placeholder="Sample title">
 
 						<div class="category-selector">
 							<label>Category</label>
-							<div>
+							<div class="category-buttons">
 	        					<button ng-repeat="category in vm.categories"
 	        							class="btn btn-instrument"
 	        							ng-class="vm.categoryClass($index)"
@@ -60,8 +60,10 @@
 					</div>
 
 					<div class="col-md-12" ng-hide="vm.uploadState === vm.states.UPLOADING">
-						<button class="btn btn-secondary" ng-click="vm.audioFile = null">Cancel</button>
-						<button class="btn btn-primary" ng-click="vm.upload()">Save</button>
+						<div class="submit-buttons">
+							<button class="btn btn-primary" ng-click="vm.audioFile = null">Cancel</button>
+							<button class="btn btn-call" ng-click="vm.upload()">Save</button>
+						</div>
 					</div>
 					<div class="col-md-12" ng-if="vm.uploadState === vm.states.UPLOADING">
 						<p>Uploading your sample...</p>
@@ -74,9 +76,9 @@
 			<div ng-if="vm.uploadState === vm.states.FINISHED">
 				<div class="row info-container">
 					<div class="col-md-12">
-						<h1>Upload Completed</h1>
-						<p><a ui-sref="sounds.samples({category: vm.sampleData.category})">Go to samples</a></p>
-						<button class="btn btn-primary" ng-click="vm.clear()">Upload another sample</button>
+						<h1>Upload Completed!</h1>
+						<p><a ui-sref="sounds.samples({category: vm.sampleData.category})">Go to samples <i class="fa fa-arrow-right" aria-hidden="true"></i></a></p>
+						<button class="btn btn-primary" ng-click="vm.clear()">Upload another</button>
 					</div>
 				</div>
 			</div>
