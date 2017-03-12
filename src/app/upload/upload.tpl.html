@@ -13,9 +13,13 @@
 				ngf-allow-dir="true"
 				accept="audio/*"
 				ngf-max-size="20MB"
-				ngf-pattern="'.mp3,.wav'">
-					<button class="btn huge btn-primary">Select sample</button>
-					<div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+				ngf-pattern="'.mp3,.wav'"
+				ngf-model-invalid="vm.invalidFile">
+					<div>
+						<button class="btn huge btn-primary">Select sample</button>
+						<h5 ngf-no-file-drop>File Drag/Drop is not supported for this browser</h5>
+						<h5 ng-hide="!vm.errorMessage">{{ vm.errorMessage }}</h5>
+					</div>
 			</div>
 			<div class="upload-description">
 				<p>Max size: <span>20MB</span></p>

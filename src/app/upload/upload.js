@@ -27,6 +27,12 @@ function uploadController(apiFactory, authFactory, $state, $scope, currentAuth, 
 		"FINISHED": "finished"
 	};
 
+	var errorMessages = {
+		pattern: 'Invalid file type, only .mp3 and .wav is allowed.',
+		maxSize: 'Please select a smaller file.',
+		other: 'Something went wrong, please try again.'
+	};
+
 	var vm = this;
 	var db = apiFactory.sampleDataReference();
 
@@ -102,6 +108,16 @@ function uploadController(apiFactory, authFactory, $state, $scope, currentAuth, 
 	function openTerms(){
 		modals.termsOfUse();
 	}
+
+	$scope.$watch("vm.invalidFile", function(){
+		console.log(vm.invalidFile);
+		if (!vm.invalidFile){
+			return;
+		}
+
+
+		vm.errorMessage = errorMessages[vm.invalidFile.$error] || errorMessages.other;
+	});
 
 	$scope.$watch('vm.audioFile', function(){
 		if (!vm.audioFile){
