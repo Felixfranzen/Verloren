@@ -73,6 +73,7 @@ function uploadController(apiFactory, authFactory, $state, $scope, currentAuth, 
 			tags: [],
 			title: title,
 			uploader: uploader,
+			uploaderId: currentAuth.uid,
 			url: ""
 		}).then(function(ref){
 			vm.uploadState = STATES.UPLOADING;
@@ -110,7 +111,6 @@ function uploadController(apiFactory, authFactory, $state, $scope, currentAuth, 
 	}
 
 	$scope.$watch("vm.invalidFile", function(){
-		console.log(vm.invalidFile);
 		if (!vm.invalidFile){
 			return;
 		}

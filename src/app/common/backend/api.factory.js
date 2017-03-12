@@ -4,7 +4,7 @@ angular.module("verloren.api", ['firebase'])
 
 apiFactory.$inject = ["$firebaseArray", "$firebaseObject"];
 function apiFactory($firebaseArray, $firebaseObject){
-	
+
 	var database;
 	var storage;
 
@@ -16,6 +16,7 @@ function apiFactory($firebaseArray, $firebaseObject){
 		getSampleCategories: getSampleCategories,
 		getFiltersForCategory: getFiltersForCategory,
 		getFavoritesForUser: getFavoritesForUser,
+		getSamplesForUser: getSamplesForUser,
 		getUserFavoritesForSample: getUserFavoritesForSample,
 		sampleDataReference: sampleDataReference,
 		sampleStorageReference: sampleStorageReference
@@ -33,14 +34,14 @@ function apiFactory($firebaseArray, $firebaseObject){
 			firebase.initializeApp(config);
 			database = firebase.database();
 			storage = firebase.storage();
-		
+
 		}
 	}
 
 	function getFavoriteSamples(id, callback){
 		var favorites = getFavoritesForUser(id);
 		favorites.$loaded().then(function(){
-			
+
 			var allSamples = $firebaseArray(database.ref("samples"));
 			allSamples.$loaded().then(function(){
 
@@ -51,11 +52,11 @@ function apiFactory($firebaseArray, $firebaseObject){
 				callback(filtered);
 
 			});
-		
+
 		});
 
 	}
-	
+
 	function getSamplesFromCategory(category){
 		return $firebaseArray(database.ref("samples").orderByChild("category").equalTo(category));
 	}
@@ -67,7 +68,7 @@ function apiFactory($firebaseArray, $firebaseObject){
 	function getSampleFile(category, id){
 		return storage.ref().child("samples/" + category + "/" + id).getDownloadURL();
 	}
-	
+
 	function getSampleCategories(){
 		return $firebaseArray(database.ref("categories/"));
 	}
@@ -78,6 +79,10 @@ function apiFactory($firebaseArray, $firebaseObject){
 
 	function getFavoritesForUser(id){
 		return $firebaseObject(database.ref("users/" + id + "/favorites"));
+	}
+
+	function getSamplesForUser(id){
+		return $firebaseArray(database.ref("samples").orderByChild("uploaderId").equalTo(id));
 	}
 
 	function sampleDataReference(){

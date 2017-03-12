@@ -32,8 +32,10 @@ function profileController(apiFactory, currentAuth, authFactory){
 	});
 
 	vm.favorites = apiFactory.getFavoritesForUser(currentAuth.uid);
+	vm.uploads = apiFactory.getSamplesForUser(currentAuth.uid);
 
 	vm.toggleFavorite = toggleFavorite;
+	vm.isFavorite = isFavorite;
 
 	function toggleFavorite(id){
 		vm.favorites[id] = null;
@@ -51,6 +53,10 @@ function profileController(apiFactory, currentAuth, authFactory){
 				return;
 			}
 		});
+	}
+
+	function isFavorite(id){
+		return vm.favorites[id];
 	}
 
 }
