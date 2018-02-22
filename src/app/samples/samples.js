@@ -44,18 +44,14 @@ function samplesController(apiFactory, $stateParams, currentAuth, $firebaseObjec
 
 	vm.activeTags = [];
 	vm.activeFormats = [];
+	vm.searchInput = "";
 
-	vm.search = search;
 	vm.toggleFavorite = toggleFavorite;
 	vm.isFavorite = isFavorite;
 	vm.filterSamples = filterSamples;
 
 	vm.orderBy = "title";
 	vm.order = order;
-
-	function search(){
-		vm.searchQuery = vm.searchInput;
-	}
 
 
 	function toggleFavorite(id){
@@ -92,10 +88,9 @@ function samplesController(apiFactory, $stateParams, currentAuth, $firebaseObjec
 	}
 
 	function filterSamples(sample){
-
 		//Check that it matches the search string
-		if (vm.searchQuery && vm.searchQuery.length > 0){
-			if (sample.title.toLowerCase().indexOf(vm.searchQuery.toLowerCase()) === -1){
+		if (vm.searchInput && vm.searchInput.length > 0){
+			if (sample.title.toLowerCase().indexOf(vm.searchInput.toLowerCase()) === -1){
 				return false;
 			}
 		}

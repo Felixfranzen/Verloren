@@ -36,9 +36,8 @@ function modals($uibModal){
 
 	function termsOfUse(){
 		var data = {
-			title: "Verloren",
-			subTitle: "Terms of use",
-			body: "Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem Lorem ipsum set dolor amet lorem "
+			title: "Terms Of Use",
+			body: "Don't upload stuff you don't have permissions for!"
 		};
 
 		return info(data);
