@@ -85,11 +85,6 @@ function samplesController(apiFactory, $stateParams, currentAuth, $firebaseObjec
 	//Order helpers
 	function numOfFavorites(sample){
 		if (sample.favorites){
-			/*
-				orderBy sorts with ascending(?) order (smallest values first) if you don't pass reverse=true.
-				Since number of favorites is the only thing we wanna sort in descending order as of now, this
-				might be a better solution than to constantly track if we should reverse the order or not
-			*/
 			return -Math.abs(Object.keys(sample.favorites).length);
 		}
 
