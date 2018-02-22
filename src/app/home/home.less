@@ -14,7 +14,7 @@
 	width: 100%;
 	height: 100%;
 	z-index: 99;
-	
+
 	/* Rectangle 3: */
 opacity: 0.6;
 background-image: linear-gradient(0deg, #2F3A42 0%, #174978 100%);
@@ -60,6 +60,11 @@ background-image: linear-gradient(0deg, #2F3A42 0%, #174978 100%);
 .jumbotron-home .header button:hover {
 	transform: scale(1.05);
 	box-shadow: 0 15px 30px rgba(0,0,0,0.15)
+}
+
+.jumbotron-home .header button:active,
+.jumbotron-home .header button:focus {
+	background-color: darken(@primary-blue, 1%) !important;
 }
 
 .jumbotron-home .header button i {

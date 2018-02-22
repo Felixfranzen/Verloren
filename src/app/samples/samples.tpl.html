@@ -4,12 +4,12 @@
 
 		<div class="sample-order filter-item">
 			<h5>SEARCH</h5>
-			<form class="input-search-group">
+			<div class="input-search-group">
 				<input type="text" class="form-control" ng-model="vm.searchInput" placeholder="Sample title">
-				<button class="btn btn-primary static" ng-click="vm.searchInput = ''" ng-if="vm.searchInput.length > 0">
+				<button class="btn btn-primary" ng-click="vm.searchInput = ''" ng-if="vm.searchInput.length > 0">
 					<i class="fa fa-close" aria-hidden="true"></i>
 				</button>
-			</form>
+			</div>
 		</div>
 
 		<hr>
